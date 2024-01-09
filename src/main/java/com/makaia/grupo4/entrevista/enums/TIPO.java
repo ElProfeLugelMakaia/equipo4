@@ -1,4 +1,4 @@
-package com.makaia.grupo4.enums;
+package com.makaia.grupo4.entrevista.enums;
 
 public enum TIPO {
     BECADO,

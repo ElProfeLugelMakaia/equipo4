@@ -1,14 +1,14 @@
 package com.makaia.grupo4.entrevista.models;
 
-import com.makaia.grupo4.enums.ESTADO;
-import com.makaia.grupo4.enums.TIPO;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.util.List;
 import java.util.Objects;
+
+import com.makaia.grupo4.entrevista.enums.ESTADO;
+import com.makaia.grupo4.entrevista.enums.TIPO;
 
 @Entity
 @Table
