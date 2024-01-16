@@ -2,47 +2,36 @@ package com.makaia.grupo4.entrevista.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import java.util.List;
 import java.util.Objects;
 
 import com.makaia.grupo4.entrevista.enums.ESTADO;
 import com.makaia.grupo4.entrevista.enums.TIPO;
 
 @Entity
-@Table
+@Table(name = "aspirante")
 public class Aspirante extends Persona {
-    
-    @Column
-    private String nivelEducativo;
 
     @Column
+    @Enumerated(EnumType.STRING)
     private TIPO tipo;
 
     @Column
+    @Enumerated(EnumType.STRING)
     private ESTADO estado;
 
-    @OneToMany(mappedBy = "aspirante")
-    private List<Entrevista> entrevistas;
-
+    @OneToOne
+    private Entrevista entrevistas;
 
     public Aspirante() {
     }
 
-    public Aspirante(String nivelEducativo, TIPO tipo, ESTADO estado, List<Entrevista> entrevistas) {
-        this.nivelEducativo = nivelEducativo;
+    public Aspirante(TIPO tipo, ESTADO estado) {
         this.tipo = tipo;
         this.estado = estado;
-        this.entrevistas = entrevistas;
-    }
-
-    public String getNivelEducativo() {
-        return this.nivelEducativo;
-    }
-
-    public void setNivelEducativo(String nivelEducativo) {
-        this.nivelEducativo = nivelEducativo;
     }
 
     public TIPO getTipo() {
@@ -61,17 +50,12 @@ public class Aspirante extends Persona {
         this.estado = estado;
     }
 
-    public List<Entrevista> getEntrevistas() {
+    public Entrevista getEntrevistas() {
         return this.entrevistas;
     }
 
-    public void setEntrevistas(List<Entrevista> entrevistas) {
+    public void setEntrevistas(Entrevista entrevistas) {
         this.entrevistas = entrevistas;
-    }
-
-    public Aspirante nivelEducativo(String nivelEducativo) {
-        setNivelEducativo(nivelEducativo);
-        return this;
     }
 
     public Aspirante tipo(TIPO tipo) {
@@ -84,7 +68,7 @@ public class Aspirante extends Persona {
         return this;
     }
 
-    public Aspirante entrevistas(List<Entrevista> entrevistas) {
+    public Aspirante entrevistas(Entrevista entrevistas) {
         setEntrevistas(entrevistas);
         return this;
     }
@@ -97,23 +81,22 @@ public class Aspirante extends Persona {
             return false;
         }
         Aspirante aspirante = (Aspirante) o;
-        return Objects.equals(nivelEducativo, aspirante.nivelEducativo) && Objects.equals(tipo, aspirante.tipo) && Objects.equals(estado, aspirante.estado) && Objects.equals(entrevistas, aspirante.entrevistas);
+        return Objects.equals(tipo, aspirante.tipo)
+                && Objects.equals(estado, aspirante.estado) && Objects.equals(entrevistas, aspirante.entrevistas);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nivelEducativo, tipo, estado, entrevistas);
+        return Objects.hash(tipo, estado, entrevistas);
     }
 
     @Override
     public String toString() {
         return "{" +
-            " nivelEducativo='" + getNivelEducativo() + "'" +
-            ", tipo='" + getTipo() + "'" +
-            ", estado='" + getEstado() + "'" +
-            ", entrevistas='" + getEntrevistas() + "'" +
-            "}";
+                ", tipo='" + getTipo() + "'" +
+                ", estado='" + getEstado() + "'" +
+                ", entrevistas='" + getEntrevistas() + "'" +
+                "}";
     }
-    
 
 }

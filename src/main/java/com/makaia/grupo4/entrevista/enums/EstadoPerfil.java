@@ -1,8 +1,8 @@
 package com.makaia.grupo4.entrevista.enums;
 
-public enum ESTADO {
-    ADMITIDO,
-    NO_ADMITIDO,
+public enum EstadoPerfil {
+    TIENE_EL_PERFIL,
+    NO_TIENE_EL_PERFIL,
     REVISAR_CASO,
     CANTERA
 }

@@ -2,11 +2,12 @@ package com.makaia.grupo4.entrevista.models;
 
 import java.util.Date;
 
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.GenerationType;
 import java.util.Objects;
@@ -14,42 +15,28 @@ import java.util.Objects;
 @Table(name = "entrevista")
 @Entity
 public class Entrevista {
-    
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private Date fecha;
-    
+
     private boolean asistida;
 
-    private String booking;
+    @OneToOne(optional = false)
+    private Booking booking;
 
-    @ManyToOne(optional = false)
-    private Aspirante aspirante;
-
-    @ManyToOne(optional = false)
-    private Mentor mentor;
-
-    @ManyToOne(optional = false)
-    private Comentario comentario;
-
-    @ManyToOne(optional = false)
+    @OneToOne(optional = false)
     private Formulario formulario;
-
-
 
     public Entrevista() {
     }
 
-    public Entrevista(long id, Date fecha, boolean asistida, String booking, Aspirante aspirante, Mentor mentor, Comentario comentario, Formulario formulario) {
-        this.id = id;
+    public Entrevista(Date fecha, boolean asistida, Booking booking, Formulario formulario) {
         this.fecha = fecha;
         this.asistida = asistida;
         this.booking = booking;
-        this.aspirante = aspirante;
-        this.mentor = mentor;
-        this.comentario = comentario;
         this.formulario = formulario;
     }
 
@@ -81,36 +68,12 @@ public class Entrevista {
         this.asistida = asistida;
     }
 
-    public String getBooking() {
+    public Booking getBooking() {
         return this.booking;
     }
 
-    public void setBooking(String booking) {
+    public void setBooking(Booking booking) {
         this.booking = booking;
-    }
-
-    public Aspirante getAspirante() {
-        return this.aspirante;
-    }
-
-    public void setAspirante(Aspirante aspirante) {
-        this.aspirante = aspirante;
-    }
-
-    public Mentor getMentor() {
-        return this.mentor;
-    }
-
-    public void setMentor(Mentor mentor) {
-        this.mentor = mentor;
-    }
-
-    public Comentario getComentario() {
-        return this.comentario;
-    }
-
-    public void setComentario(Comentario comentario) {
-        this.comentario = comentario;
     }
 
     public Formulario getFormulario() {
@@ -136,23 +99,8 @@ public class Entrevista {
         return this;
     }
 
-    public Entrevista booking(String booking) {
+    public Entrevista booking(Booking booking) {
         setBooking(booking);
-        return this;
-    }
-
-    public Entrevista aspirante(Aspirante aspirante) {
-        setAspirante(aspirante);
-        return this;
-    }
-
-    public Entrevista mentor(Mentor mentor) {
-        setMentor(mentor);
-        return this;
-    }
-
-    public Entrevista comentario(Comentario comentario) {
-        setComentario(comentario);
         return this;
     }
 
@@ -169,26 +117,24 @@ public class Entrevista {
             return false;
         }
         Entrevista entrevista = (Entrevista) o;
-        return id == entrevista.id && Objects.equals(fecha, entrevista.fecha) && asistida == entrevista.asistida && Objects.equals(booking, entrevista.booking) && Objects.equals(aspirante, entrevista.aspirante) && Objects.equals(mentor, entrevista.mentor) && Objects.equals(comentario, entrevista.comentario) && Objects.equals(formulario, entrevista.formulario);
+        return id == entrevista.id && Objects.equals(fecha, entrevista.fecha) && asistida == entrevista.asistida
+                && Objects.equals(booking, entrevista.booking) && Objects.equals(formulario, entrevista.formulario);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, fecha, asistida, booking, aspirante, mentor, comentario, formulario);
+        return Objects.hash(id, fecha, asistida, booking, formulario);
     }
 
     @Override
     public String toString() {
         return "{" +
-            " id='" + getId() + "'" +
-            ", fecha='" + getFecha() + "'" +
-            ", asistida='" + isAsistida() + "'" +
-            ", booking='" + getBooking() + "'" +
-            ", aspirante='" + getAspirante() + "'" +
-            ", mentor='" + getMentor() + "'" +
-            ", comentario='" + getComentario() + "'" +
-            ", formulario='" + getFormulario() + "'" +
-            "}";
+                " id='" + getId() + "'" +
+                ", fecha='" + getFecha() + "'" +
+                ", asistida='" + isAsistida() + "'" +
+                ", booking='" + getBooking() + "'" +
+                ", formulario='" + getFormulario() + "'" +
+                "}";
     }
 
 }

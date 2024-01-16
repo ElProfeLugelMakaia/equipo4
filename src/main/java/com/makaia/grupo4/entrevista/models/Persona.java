@@ -1,8 +1,12 @@
 package com.makaia.grupo4.entrevista.models;
 
 import com.makaia.grupo4.entrevista.enums.GENERO;
+import com.makaia.grupo4.entrevista.enums.NivelEducativo;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -35,6 +39,9 @@ public abstract class Persona {
   private String ciudad;
 
   @Column
+  private String direccion;
+
+  @Column
   private Date fechaNacimiento;
 
   @Column
@@ -49,21 +56,25 @@ public abstract class Persona {
   @Column
   private String tipoPoblacion;
 
-  public Persona() {}
+  @Column
+  @Enumerated(EnumType.STRING)
+  private NivelEducativo nivelEducativo;
+
+  public Persona() {
+  }
 
   public Persona(
-    Long id,
-    String nombres,
-    String correo,
-    String telefono,
-    String departamento,
-    String ciudad,
-    Date fechaNacimiento,
-    GENERO genero,
-    String nacionalidad,
-    Byte estrato,
-    String tipoPoblacion
-  ) {
+      Long id,
+      String nombres,
+      String correo,
+      String telefono,
+      String departamento,
+      String ciudad,
+      Date fechaNacimiento,
+      GENERO genero,
+      String nacionalidad,
+      Byte estrato,
+      String tipoPoblacion) {
     this.id = id;
     this.nombres = nombres;
     this.correo = correo;
@@ -222,81 +233,77 @@ public abstract class Persona {
 
   @Override
   public boolean equals(Object o) {
-    if (o == this) return true;
+    if (o == this)
+      return true;
     if (!(o instanceof Persona)) {
       return false;
     }
     Persona persona = (Persona) o;
-    return (
-      Objects.equals(id, persona.id) &&
-      Objects.equals(nombres, persona.nombres) &&
-      Objects.equals(correo, persona.correo) &&
-      Objects.equals(telefono, persona.telefono) &&
-      Objects.equals(departamento, persona.departamento) &&
-      Objects.equals(ciudad, persona.ciudad) &&
-      Objects.equals(fechaNacimiento, persona.fechaNacimiento) &&
-      Objects.equals(genero, persona.genero) &&
-      Objects.equals(nacionalidad, persona.nacionalidad) &&
-      Objects.equals(estrato, persona.estrato) &&
-      Objects.equals(tipoPoblacion, persona.tipoPoblacion)
-    );
+    return (Objects.equals(id, persona.id) &&
+        Objects.equals(nombres, persona.nombres) &&
+        Objects.equals(correo, persona.correo) &&
+        Objects.equals(telefono, persona.telefono) &&
+        Objects.equals(departamento, persona.departamento) &&
+        Objects.equals(ciudad, persona.ciudad) &&
+        Objects.equals(fechaNacimiento, persona.fechaNacimiento) &&
+        Objects.equals(genero, persona.genero) &&
+        Objects.equals(nacionalidad, persona.nacionalidad) &&
+        Objects.equals(estrato, persona.estrato) &&
+        Objects.equals(tipoPoblacion, persona.tipoPoblacion));
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(
-      id,
-      nombres,
-      correo,
-      telefono,
-      departamento,
-      ciudad,
-      fechaNacimiento,
-      genero,
-      nacionalidad,
-      estrato,
-      tipoPoblacion
-    );
+        id,
+        nombres,
+        correo,
+        telefono,
+        departamento,
+        ciudad,
+        fechaNacimiento,
+        genero,
+        nacionalidad,
+        estrato,
+        tipoPoblacion);
   }
 
   @Override
   public String toString() {
-    return (
-      "{" +
-      " id='" +
-      getId() +
-      "'" +
-      ", nombres='" +
-      getNombres() +
-      "'" +
-      ", correo='" +
-      getCorreo() +
-      "'" +
-      ", telefono='" +
-      getTelefono() +
-      "'" +
-      ", departamento='" +
-      getDepartamento() +
-      "'" +
-      ", ciudad='" +
-      getCiudad() +
-      "'" +
-      ", fechaNacimiento='" +
-      getFechaNacimiento() +
-      "'" +
-      ", genero='" +
-      getGenero() +
-      "'" +
-      ", nacionalidad='" +
-      getNacionalidad() +
-      "'" +
-      ", estrato='" +
-      getEstrato() +
-      "'" +
-      ", tipoPoblacion='" +
-      getTipoPoblacion() +
-      "'" +
-      "}"
-    );
+    return ("{" +
+        " id='" +
+        getId() +
+        "'" +
+        ", nombres='" +
+        getNombres() +
+        "'" +
+        ", correo='" +
+        getCorreo() +
+        "'" +
+        ", telefono='" +
+        getTelefono() +
+        "'" +
+        ", departamento='" +
+        getDepartamento() +
+        "'" +
+        ", ciudad='" +
+        getCiudad() +
+        "'" +
+        ", fechaNacimiento='" +
+        getFechaNacimiento() +
+        "'" +
+        ", genero='" +
+        getGenero() +
+        "'" +
+        ", nacionalidad='" +
+        getNacionalidad() +
+        "'" +
+        ", estrato='" +
+        getEstrato() +
+        "'" +
+        ", tipoPoblacion='" +
+        getTipoPoblacion() +
+        "'" +
+        "}");
   }
 }

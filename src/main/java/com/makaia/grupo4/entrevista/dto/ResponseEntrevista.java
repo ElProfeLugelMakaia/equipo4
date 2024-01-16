@@ -11,7 +11,7 @@ public class ResponseEntrevista {
 
   private boolean asistida;
 
-  private String booking;
+  private Long booking_id;
 
   private Long aspirante;
 
@@ -21,22 +21,22 @@ public class ResponseEntrevista {
 
   private Long formulario_id;
 
-  public ResponseEntrevista() {}
+  public ResponseEntrevista() {
+  }
 
   public ResponseEntrevista(
-    long id,
-    Date fecha,
-    boolean asistida,
-    String booking,
-    Long aspirante,
-    Long mentor_id,
-    Long comentario_id,
-    Long formulario_id
-  ) {
+      long id,
+      Date fecha,
+      boolean asistida,
+      Long booking_id,
+      Long aspirante,
+      Long mentor_id,
+      Long comentario_id,
+      Long formulario_id) {
     this.id = id;
     this.fecha = fecha;
     this.asistida = asistida;
-    this.booking = booking;
+    this.booking_id = booking_id;
     this.aspirante = aspirante;
     this.mentor_id = mentor_id;
     this.comentario_id = comentario_id;
@@ -44,19 +44,14 @@ public class ResponseEntrevista {
   }
 
   public ResponseEntrevista(
-    long id,
-    Date fecha,
-    boolean asistida,
-    String booking,
-    Long aspirante,
-    Long mentor_id
-  ) {
+      long id,
+      Date fecha,
+      boolean asistida,
+      Long booking_id) {
     this.id = id;
     this.fecha = fecha;
     this.asistida = asistida;
-    this.booking = booking;
-    this.aspirante = aspirante;
-    this.mentor_id = mentor_id;
+    this.booking_id = booking_id;
   }
 
   public long getId() {
@@ -87,12 +82,12 @@ public class ResponseEntrevista {
     this.asistida = asistida;
   }
 
-  public String getBooking() {
-    return this.booking;
+  public Long getBooking_id() {
+    return this.booking_id;
   }
 
-  public void setBooking(String booking) {
-    this.booking = booking;
+  public void setBooking_id(Long booking_id) {
+    this.booking_id = booking_id;
   }
 
   public Long getAspirante() {
@@ -142,8 +137,8 @@ public class ResponseEntrevista {
     return this;
   }
 
-  public ResponseEntrevista booking(String booking) {
-    setBooking(booking);
+  public ResponseEntrevista booking_id(Long booking_id) {
+    setBooking_id(booking_id);
     return this;
   }
 
@@ -169,66 +164,37 @@ public class ResponseEntrevista {
 
   @Override
   public boolean equals(Object o) {
-    if (o == this) return true;
+    if (o == this)
+      return true;
     if (!(o instanceof ResponseEntrevista)) {
       return false;
     }
     ResponseEntrevista responseEntrevista = (ResponseEntrevista) o;
-    return (
-      id == responseEntrevista.id &&
-      Objects.equals(fecha, responseEntrevista.fecha) &&
-      asistida == responseEntrevista.asistida &&
-      Objects.equals(booking, responseEntrevista.booking) &&
-      Objects.equals(aspirante, responseEntrevista.aspirante) &&
-      Objects.equals(mentor_id, responseEntrevista.mentor_id) &&
-      Objects.equals(comentario_id, responseEntrevista.comentario_id) &&
-      Objects.equals(formulario_id, responseEntrevista.formulario_id)
-    );
+    return id == responseEntrevista.id && Objects.equals(fecha, responseEntrevista.fecha)
+        && asistida == responseEntrevista.asistida && Objects.equals(booking_id, responseEntrevista.booking_id)
+        && Objects.equals(aspirante, responseEntrevista.aspirante)
+        && Objects.equals(mentor_id, responseEntrevista.mentor_id)
+        && Objects.equals(comentario_id, responseEntrevista.comentario_id)
+        && Objects.equals(formulario_id, responseEntrevista.formulario_id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(
-      id,
-      fecha,
-      asistida,
-      booking,
-      aspirante,
-      mentor_id,
-      comentario_id,
-      formulario_id
-    );
+    return Objects.hash(id, fecha, asistida, booking_id, aspirante, mentor_id, comentario_id, formulario_id);
   }
 
   @Override
   public String toString() {
-    return (
-      "{" +
-      " id='" +
-      getId() +
-      "'" +
-      ", fecha='" +
-      getFecha() +
-      "'" +
-      ", asistida='" +
-      isAsistida() +
-      "'" +
-      ", booking='" +
-      getBooking() +
-      "'" +
-      ", aspirante='" +
-      getAspirante() +
-      "'" +
-      ", mentor_id='" +
-      getMentor_id() +
-      "'" +
-      ", comentario_id='" +
-      getComentario_id() +
-      "'" +
-      ", formulario_id='" +
-      getFormulario_id() +
-      "'" +
-      "}"
-    );
+    return "{" +
+        " id='" + getId() + "'" +
+        ", fecha='" + getFecha() + "'" +
+        ", asistida='" + isAsistida() + "'" +
+        ", booking_id='" + getBooking_id() + "'" +
+        ", aspirante='" + getAspirante() + "'" +
+        ", mentor_id='" + getMentor_id() + "'" +
+        ", comentario_id='" + getComentario_id() + "'" +
+        ", formulario_id='" + getFormulario_id() + "'" +
+        "}";
   }
+
 }

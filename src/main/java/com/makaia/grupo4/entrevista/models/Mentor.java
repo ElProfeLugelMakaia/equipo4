@@ -1,31 +1,31 @@
 package com.makaia.grupo4.entrevista.models;
 
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
-@Table(name= "mentor")
+@Table(name = "mentor")
 public class Mentor extends Persona {
-    
+
     @Column
     private boolean disponibilidad;
 
-    @OneToMany(mappedBy = "aspirante")
-    private List<Entrevista> entrevistas;
+    @OneToOne(mappedBy = "mentor")
+    private Entrevista entrevistas;
 
+    @OneToMany(mappedBy = "mentor")
+    private List<Agenda> agenda;
 
     public Mentor() {
     }
 
-    public Mentor(boolean disponibilidad, List<Entrevista> entrevistas) {
+    public Mentor(boolean disponibilidad) {
         this.disponibilidad = disponibilidad;
-        this.entrevistas = entrevistas;
     }
 
     public boolean isDisponibilidad() {
@@ -40,11 +40,11 @@ public class Mentor extends Persona {
         this.disponibilidad = disponibilidad;
     }
 
-    public List<Entrevista> getEntrevistas() {
+    public Entrevista getEntrevistas() {
         return this.entrevistas;
     }
 
-    public void setEntrevistas(List<Entrevista> entrevistas) {
+    public void setEntrevistas(Entrevista entrevistas) {
         this.entrevistas = entrevistas;
     }
 
@@ -53,7 +53,7 @@ public class Mentor extends Persona {
         return this;
     }
 
-    public Mentor entrevistas(List<Entrevista> entrevistas) {
+    public Mentor entrevistas(Entrevista entrevistas) {
         setEntrevistas(entrevistas);
         return this;
     }
@@ -77,10 +77,9 @@ public class Mentor extends Persona {
     @Override
     public String toString() {
         return "{" +
-            " disponibilidad='" + isDisponibilidad() + "'" +
-            ", entrevistas='" + getEntrevistas() + "'" +
-            "}";
+                " disponibilidad='" + isDisponibilidad() + "'" +
+                ", entrevistas='" + getEntrevistas() + "'" +
+                "}";
     }
-    
-    
+
 }

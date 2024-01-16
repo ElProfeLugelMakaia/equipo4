@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 import java.util.Date;
@@ -12,7 +14,6 @@ import java.util.Objects;
 @Entity
 @Table
 public class Comentario {
-    
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,14 +23,17 @@ public class Comentario {
 
     private String texto;
 
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private Entrevista entrevista;
 
     public Comentario() {
     }
 
-    public Comentario(Long id, Date fecha, String texto) {
-        this.id = id;
+    public Comentario(Date fecha, String texto, Entrevista entrevista) {
         this.fecha = fecha;
         this.texto = texto;
+        this.entrevista = entrevista;
     }
 
     public Long getId() {
@@ -79,7 +83,8 @@ public class Comentario {
             return false;
         }
         Comentario comentario = (Comentario) o;
-        return Objects.equals(id, comentario.id) && Objects.equals(fecha, comentario.fecha) && Objects.equals(texto, comentario.texto);
+        return Objects.equals(id, comentario.id) && Objects.equals(fecha, comentario.fecha)
+                && Objects.equals(texto, comentario.texto);
     }
 
     @Override
@@ -90,10 +95,10 @@ public class Comentario {
     @Override
     public String toString() {
         return "{" +
-            " id='" + getId() + "'" +
-            ", fecha='" + getFecha() + "'" +
-            ", texto='" + getTexto() + "'" +
-            "}";
+                " id='" + getId() + "'" +
+                ", fecha='" + getFecha() + "'" +
+                ", texto='" + getTexto() + "'" +
+                "}";
     }
-    
+
 }

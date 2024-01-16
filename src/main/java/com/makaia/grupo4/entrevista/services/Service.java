@@ -29,55 +29,48 @@ public class Service {
 
   public ResponseEntity<List<ResponseEntrevista>> getAllEntrevistas() {
     List<ResponseEntrevista> responseEntrevistas = StreamSupport
-      .stream(this.repository.findAll().spliterator(), false)
-      .map(this::convertEntrevistaToDTO)
-      .collect(Collectors.toList());
+        .stream(this.repository.findAll().spliterator(), false)
+        .map(this::convertEntrevistaToDTO)
+        .collect(Collectors.toList());
 
     return ResponseEntity.ok(responseEntrevistas);
   }
 
   public ResponseEntity<ResponseEntrevista> getEntrevistaByAspiranteId(
-    Long id
-  ) {
+      Long id) {
     Optional<Aspirante> aspirante = aspiranteRespository.findById(id);
 
     if (!aspirante.isPresent()) {
       throw new EntrevistaApiException("El aspirante no existe");
     }
     ResponseEntrevista responseEntrevista = convertEntrevistaToDTO(
-      this.repository.getEntrevistaAspiranteId(aspirante.get())
-    );
+        this.repository.getEntrevistaAspiranteId(aspirante.get()));
 
     return ResponseEntity.ok(responseEntrevista);
   }
 
   public ResponseEntity<List<ResponseEntrevista>> getEntrevistasMentorId(
-    Long id
-  ) {
+      Long id) {
     Optional<Mentor> mentor = mentorRepository.findById(id);
 
     if (!mentor.isPresent()) {
       throw new EntrevistaApiException("El mentor no existe");
     }
     List<ResponseEntrevista> responseEntrevistas = StreamSupport
-      .stream(
-        this.repository.getEntrevistaMentorId(mentor.get()).spliterator(),
-        false
-      )
-      .map(this::convertEntrevistaToDTO)
-      .collect(Collectors.toList());
+        .stream(
+            this.repository.getEntrevistaMentorId(mentor.get()).spliterator(),
+            false)
+        .map(this::convertEntrevistaToDTO)
+        .collect(Collectors.toList());
 
     return ResponseEntity.ok(responseEntrevistas);
   }
 
   private ResponseEntrevista convertEntrevistaToDTO(Entrevista entrevista) {
     return new ResponseEntrevista(
-      entrevista.getId(),
-      entrevista.getFecha(),
-      entrevista.isAsistida(),
-      entrevista.getBooking(),
-      entrevista.getAspirante().getId(),
-      entrevista.getMentor().getId()
-    );
+        entrevista.getId(),
+        entrevista.getFecha(),
+        entrevista.isAsistida(),
+        entrevista.getBooking().getId());
   }
 }
