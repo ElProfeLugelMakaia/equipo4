@@ -9,6 +9,8 @@ import com.makaia.grupo4.entrevista.repositories.AspiranteRepository;
 import com.makaia.grupo4.entrevista.repositories.EntrevistaRepository;
 import com.makaia.grupo4.entrevista.repositories.MentorRespository;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -16,7 +18,9 @@ import java.util.stream.StreamSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 
-public class Service {
+@org.springframework.stereotype.Service
+@Slf4j
+public class AspiranteService {
 
   @Autowired
   EntrevistaRepository repository;
@@ -36,35 +40,35 @@ public class Service {
     return ResponseEntity.ok(responseEntrevistas);
   }
 
-  public ResponseEntity<ResponseEntrevista> getEntrevistaByAspiranteId(
-      Long id) {
-    Optional<Aspirante> aspirante = aspiranteRespository.findById(id);
+  // public ResponseEntity<ResponseEntrevista> getEntrevistaByAspiranteId(
+  // Long id) {
+  // Optional<Aspirante> aspirante = aspiranteRespository.findById(id);
 
-    if (!aspirante.isPresent()) {
-      throw new EntrevistaApiException("El aspirante no existe");
-    }
-    ResponseEntrevista responseEntrevista = convertEntrevistaToDTO(
-        this.repository.getEntrevistaAspiranteId(aspirante.get()));
+  // if (!aspirante.isPresent()) {
+  // throw new EntrevistaApiException("El aspirante no existe");
+  // }
+  // ResponseEntrevista responseEntrevista = convertEntrevistaToDTO(
+  // this.repository.getEntrevistaAspiranteId(aspirante.get()));
 
-    return ResponseEntity.ok(responseEntrevista);
-  }
+  // return ResponseEntity.ok(responseEntrevista);
+  // }
 
-  public ResponseEntity<List<ResponseEntrevista>> getEntrevistasMentorId(
-      Long id) {
-    Optional<Mentor> mentor = mentorRepository.findById(id);
+  // public ResponseEntity<List<ResponseEntrevista>> getEntrevistasMentorId(
+  // Long id) {
+  // Optional<Mentor> mentor = mentorRepository.findById(id);
 
-    if (!mentor.isPresent()) {
-      throw new EntrevistaApiException("El mentor no existe");
-    }
-    List<ResponseEntrevista> responseEntrevistas = StreamSupport
-        .stream(
-            this.repository.getEntrevistaMentorId(mentor.get()).spliterator(),
-            false)
-        .map(this::convertEntrevistaToDTO)
-        .collect(Collectors.toList());
+  // if (!mentor.isPresent()) {
+  // throw new EntrevistaApiException("El mentor no existe");
+  // }
+  // List<ResponseEntrevista> responseEntrevistas = StreamSupport
+  // .stream(
+  // this.repository.getEntrevistaMentorId(mentor.get()).spliterator(),
+  // false)
+  // .map(this::convertEntrevistaToDTO)
+  // .collect(Collectors.toList());
 
-    return ResponseEntity.ok(responseEntrevistas);
-  }
+  // return ResponseEntity.ok(responseEntrevistas);
+  // }
 
   private ResponseEntrevista convertEntrevistaToDTO(Entrevista entrevista) {
     return new ResponseEntrevista(

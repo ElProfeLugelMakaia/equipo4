@@ -8,6 +8,9 @@ import jakarta.persistence.Table;
 
 import java.util.*;
 
+import com.makaia.grupo4.entrevista.enums.GENERO;
+import com.makaia.grupo4.entrevista.enums.NivelEducativo;
+
 @Entity
 @Table(name = "mentor")
 public class Mentor extends Persona {
@@ -15,16 +18,31 @@ public class Mentor extends Persona {
     @Column
     private boolean disponibilidad;
 
-    @OneToOne(mappedBy = "mentor")
+    @OneToOne
     private Entrevista entrevistas;
 
-    @OneToMany(mappedBy = "mentor")
+    @OneToMany
     private List<Agenda> agenda;
 
     public Mentor() {
     }
 
-    public Mentor(boolean disponibilidad) {
+    public Mentor(// Persona
+            String nombres,
+            String correo,
+            String telefono,
+            String departamento,
+            String ciudad,
+            String direccion,
+            Date fechaNacimiento,
+            GENERO genero,
+            String nacionalidad,
+            Byte estrato,
+            String tipoPoblacion,
+            NivelEducativo nivelEducativo, boolean disponibilidad) {
+        super(
+                nombres, correo, telefono, departamento, ciudad, direccion, fechaNacimiento, genero, nacionalidad,
+                estrato, tipoPoblacion, nivelEducativo);
         this.disponibilidad = disponibilidad;
     }
 

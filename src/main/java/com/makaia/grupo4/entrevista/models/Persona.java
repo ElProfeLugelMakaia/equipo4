@@ -12,7 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
-import java.sql.Date;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -45,6 +45,7 @@ public abstract class Persona {
   private Date fechaNacimiento;
 
   @Column
+  @Enumerated(EnumType.STRING)
   private GENERO genero;
 
   @Column
@@ -63,29 +64,21 @@ public abstract class Persona {
   public Persona() {
   }
 
-  public Persona(
-      Long id,
-      String nombres,
-      String correo,
-      String telefono,
-      String departamento,
-      String ciudad,
-      Date fechaNacimiento,
-      GENERO genero,
-      String nacionalidad,
-      Byte estrato,
-      String tipoPoblacion) {
-    this.id = id;
+  public Persona(String nombres, String correo, String telefono, String departamento, String ciudad, String direccion,
+      Date fechaNacimiento, GENERO genero, String nacionalidad, Byte estrato, String tipoPoblacion,
+      NivelEducativo nivelEducativo) {
     this.nombres = nombres;
     this.correo = correo;
     this.telefono = telefono;
     this.departamento = departamento;
     this.ciudad = ciudad;
+    this.direccion = direccion;
     this.fechaNacimiento = fechaNacimiento;
     this.genero = genero;
     this.nacionalidad = nacionalidad;
     this.estrato = estrato;
     this.tipoPoblacion = tipoPoblacion;
+    this.nivelEducativo = nivelEducativo;
   }
 
   public Long getId() {
@@ -136,6 +129,14 @@ public abstract class Persona {
     this.ciudad = ciudad;
   }
 
+  public String getDireccion() {
+    return this.direccion;
+  }
+
+  public void setDireccion(String direccion) {
+    this.direccion = direccion;
+  }
+
   public Date getFechaNacimiento() {
     return this.fechaNacimiento;
   }
@@ -176,6 +177,14 @@ public abstract class Persona {
     this.tipoPoblacion = tipoPoblacion;
   }
 
+  public NivelEducativo getNivelEducativo() {
+    return this.nivelEducativo;
+  }
+
+  public void setNivelEducativo(NivelEducativo nivelEducativo) {
+    this.nivelEducativo = nivelEducativo;
+  }
+
   public Persona id(Long id) {
     setId(id);
     return this;
@@ -206,6 +215,11 @@ public abstract class Persona {
     return this;
   }
 
+  public Persona direccion(String direccion) {
+    setDireccion(direccion);
+    return this;
+  }
+
   public Persona fechaNacimiento(Date fechaNacimiento) {
     setFechaNacimiento(fechaNacimiento);
     return this;
@@ -231,6 +245,11 @@ public abstract class Persona {
     return this;
   }
 
+  public Persona nivelEducativo(NivelEducativo nivelEducativo) {
+    setNivelEducativo(nivelEducativo);
+    return this;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (o == this)
@@ -239,71 +258,38 @@ public abstract class Persona {
       return false;
     }
     Persona persona = (Persona) o;
-    return (Objects.equals(id, persona.id) &&
-        Objects.equals(nombres, persona.nombres) &&
-        Objects.equals(correo, persona.correo) &&
-        Objects.equals(telefono, persona.telefono) &&
-        Objects.equals(departamento, persona.departamento) &&
-        Objects.equals(ciudad, persona.ciudad) &&
-        Objects.equals(fechaNacimiento, persona.fechaNacimiento) &&
-        Objects.equals(genero, persona.genero) &&
-        Objects.equals(nacionalidad, persona.nacionalidad) &&
-        Objects.equals(estrato, persona.estrato) &&
-        Objects.equals(tipoPoblacion, persona.tipoPoblacion));
+    return Objects.equals(id, persona.id) && Objects.equals(nombres, persona.nombres)
+        && Objects.equals(correo, persona.correo) && Objects.equals(telefono, persona.telefono)
+        && Objects.equals(departamento, persona.departamento) && Objects.equals(ciudad, persona.ciudad)
+        && Objects.equals(direccion, persona.direccion) && Objects.equals(fechaNacimiento, persona.fechaNacimiento)
+        && Objects.equals(genero, persona.genero) && Objects.equals(nacionalidad, persona.nacionalidad)
+        && Objects.equals(estrato, persona.estrato) && Objects.equals(tipoPoblacion, persona.tipoPoblacion)
+        && Objects.equals(nivelEducativo, persona.nivelEducativo);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(
-        id,
-        nombres,
-        correo,
-        telefono,
-        departamento,
-        ciudad,
-        fechaNacimiento,
-        genero,
-        nacionalidad,
-        estrato,
-        tipoPoblacion);
+    return Objects.hash(id, nombres, correo, telefono, departamento, ciudad, direccion, fechaNacimiento, genero,
+        nacionalidad, estrato, tipoPoblacion, nivelEducativo);
   }
 
   @Override
   public String toString() {
-    return ("{" +
-        " id='" +
-        getId() +
-        "'" +
-        ", nombres='" +
-        getNombres() +
-        "'" +
-        ", correo='" +
-        getCorreo() +
-        "'" +
-        ", telefono='" +
-        getTelefono() +
-        "'" +
-        ", departamento='" +
-        getDepartamento() +
-        "'" +
-        ", ciudad='" +
-        getCiudad() +
-        "'" +
-        ", fechaNacimiento='" +
-        getFechaNacimiento() +
-        "'" +
-        ", genero='" +
-        getGenero() +
-        "'" +
-        ", nacionalidad='" +
-        getNacionalidad() +
-        "'" +
-        ", estrato='" +
-        getEstrato() +
-        "'" +
-        ", tipoPoblacion='" +
-        getTipoPoblacion() +
-        "'" +
-        "}");
+    return "{" +
+        " id='" + getId() + "'" +
+        ", nombres='" + getNombres() + "'" +
+        ", correo='" + getCorreo() + "'" +
+        ", telefono='" + getTelefono() + "'" +
+        ", departamento='" + getDepartamento() + "'" +
+        ", ciudad='" + getCiudad() + "'" +
+        ", direccion='" + getDireccion() + "'" +
+        ", fechaNacimiento='" + getFechaNacimiento() + "'" +
+        ", genero='" + getGenero() + "'" +
+        ", nacionalidad='" + getNacionalidad() + "'" +
+        ", estrato='" + getEstrato() + "'" +
+        ", tipoPoblacion='" + getTipoPoblacion() + "'" +
+        ", nivelEducativo='" + getNivelEducativo() + "'" +
+        "}";
   }
+
 }

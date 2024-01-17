@@ -9,7 +9,11 @@ import jakarta.persistence.Table;
 import java.util.Objects;
 
 import com.makaia.grupo4.entrevista.enums.ESTADO;
+import com.makaia.grupo4.entrevista.enums.GENERO;
+import com.makaia.grupo4.entrevista.enums.NivelEducativo;
 import com.makaia.grupo4.entrevista.enums.TIPO;
+
+import java.util.Date;
 
 @Entity
 @Table(name = "aspirante")
@@ -29,7 +33,26 @@ public class Aspirante extends Persona {
     public Aspirante() {
     }
 
-    public Aspirante(TIPO tipo, ESTADO estado) {
+    public Aspirante(
+            // Persona
+            String nombres,
+            String correo,
+            String telefono,
+            String departamento,
+            String ciudad,
+            String direccion,
+            Date fechaNacimiento,
+            GENERO genero,
+            String nacionalidad,
+            Byte estrato,
+            String tipoPoblacion,
+            NivelEducativo nivelEducativo,
+            // Aspirante
+            TIPO tipo,
+            ESTADO estado) {
+        super(
+                nombres, correo, telefono, departamento, ciudad, direccion, fechaNacimiento, genero, nacionalidad,
+                estrato, tipoPoblacion, nivelEducativo);
         this.tipo = tipo;
         this.estado = estado;
     }
