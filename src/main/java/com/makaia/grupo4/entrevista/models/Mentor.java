@@ -10,13 +10,17 @@ import java.util.*;
 
 import com.makaia.grupo4.entrevista.enums.GENERO;
 import com.makaia.grupo4.entrevista.enums.NivelEducativo;
+import java.util.Objects;
 
 @Entity
 @Table(name = "mentor")
 public class Mentor extends Persona {
 
     @Column
-    private boolean disponibilidad;
+    private boolean estado;
+
+    @Column
+    private String password;
 
     @OneToOne
     private Entrevista entrevistas;
@@ -39,23 +43,32 @@ public class Mentor extends Persona {
             String nacionalidad,
             Byte estrato,
             String tipoPoblacion,
-            NivelEducativo nivelEducativo, boolean disponibilidad) {
+            NivelEducativo nivelEducativo, String password, boolean estado) {
         super(
                 nombres, correo, telefono, departamento, ciudad, direccion, fechaNacimiento, genero, nacionalidad,
                 estrato, tipoPoblacion, nivelEducativo);
-        this.disponibilidad = disponibilidad;
+        this.estado = estado;
+        this.password = password;
     }
 
-    public boolean isDisponibilidad() {
-        return this.disponibilidad;
+    public boolean isEstado() {
+        return this.estado;
     }
 
-    public boolean getDisponibilidad() {
-        return this.disponibilidad;
+    public boolean getEstado() {
+        return this.estado;
     }
 
-    public void setDisponibilidad(boolean disponibilidad) {
-        this.disponibilidad = disponibilidad;
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Entrevista getEntrevistas() {
@@ -66,13 +79,31 @@ public class Mentor extends Persona {
         this.entrevistas = entrevistas;
     }
 
-    public Mentor disponibilidad(boolean disponibilidad) {
-        setDisponibilidad(disponibilidad);
+    public List<Agenda> getAgenda() {
+        return this.agenda;
+    }
+
+    public void setAgenda(List<Agenda> agenda) {
+        this.agenda = agenda;
+    }
+
+    public Mentor estado(boolean estado) {
+        setEstado(estado);
+        return this;
+    }
+
+    public Mentor password(String password) {
+        setPassword(password);
         return this;
     }
 
     public Mentor entrevistas(Entrevista entrevistas) {
         setEntrevistas(entrevistas);
+        return this;
+    }
+
+    public Mentor agenda(List<Agenda> agenda) {
+        setAgenda(agenda);
         return this;
     }
 
@@ -84,19 +115,22 @@ public class Mentor extends Persona {
             return false;
         }
         Mentor mentor = (Mentor) o;
-        return disponibilidad == mentor.disponibilidad && Objects.equals(entrevistas, mentor.entrevistas);
+        return estado == mentor.estado && Objects.equals(password, mentor.password)
+                && Objects.equals(entrevistas, mentor.entrevistas) && Objects.equals(agenda, mentor.agenda);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(disponibilidad, entrevistas);
+        return Objects.hash(estado, password, entrevistas, agenda);
     }
 
     @Override
     public String toString() {
         return "{" +
-                " disponibilidad='" + isDisponibilidad() + "'" +
+                " estado='" + isEstado() + "'" +
+                ", password='" + getPassword() + "'" +
                 ", entrevistas='" + getEntrevistas() + "'" +
+                ", agenda='" + getAgenda() + "'" +
                 "}";
     }
 

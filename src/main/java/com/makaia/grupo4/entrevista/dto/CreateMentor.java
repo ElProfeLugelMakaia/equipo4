@@ -1,72 +1,46 @@
-package com.makaia.grupo4.entrevista.models;
+package com.makaia.grupo4.entrevista.dto;
 
 import com.makaia.grupo4.entrevista.enums.GENERO;
 import com.makaia.grupo4.entrevista.enums.NivelEducativo;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
-import java.util.Date;
+import java.sql.Date;
 import java.util.Objects;
 
-@Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Persona {
+public class CreateMentor {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  protected Long id;
+  private String nombres;
 
-  @Column
-  protected String nombres;
+  private String correo;
 
-  @Column
-  protected String correo;
+  private String telefono;
 
-  @Column
-  protected String telefono;
+  private String departamento;
 
-  @Column
-  protected String departamento;
+  private String ciudad;
 
-  @Column
-  protected String ciudad;
+  private String direccion;
 
-  @Column
-  protected String direccion;
+  private Date fechaNacimiento;
 
-  @Column
-  protected Date fechaNacimiento;
+  private GENERO genero;
 
-  @Column
-  @Enumerated(EnumType.STRING)
-  protected GENERO genero;
+  private String nacionalidad;
 
-  @Column
-  protected String nacionalidad;
+  private Byte estrato;
 
-  @Column
-  protected Byte estrato;
+  private String tipoPoblacion;
 
-  @Column
-  protected String tipoPoblacion;
+  private NivelEducativo nivelEducativo;
 
-  @Column
-  @Enumerated(EnumType.STRING)
-  protected NivelEducativo nivelEducativo;
+  private boolean estado;
 
-  public Persona() {
+  private String password;
+
+  public CreateMentor() {
   }
 
-  public Persona(String nombres, String correo, String telefono, String departamento, String ciudad, String direccion,
-      Date fechaNacimiento, GENERO genero, String nacionalidad, Byte estrato, String tipoPoblacion,
-      NivelEducativo nivelEducativo) {
+  public CreateMentor(String nombres, String correo, String telefono, String departamento, String ciudad,
+      String direccion, Date fechaNacimiento, GENERO genero, String nacionalidad, Byte estrato, String tipoPoblacion,
+      NivelEducativo nivelEducativo, boolean estado, String password) {
     this.nombres = nombres;
     this.correo = correo;
     this.telefono = telefono;
@@ -79,14 +53,8 @@ public abstract class Persona {
     this.estrato = estrato;
     this.tipoPoblacion = tipoPoblacion;
     this.nivelEducativo = nivelEducativo;
-  }
-
-  public Long getId() {
-    return this.id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
+    this.estado = estado;
+    this.password = password;
   }
 
   public String getNombres() {
@@ -185,68 +153,93 @@ public abstract class Persona {
     this.nivelEducativo = nivelEducativo;
   }
 
-  public Persona id(Long id) {
-    setId(id);
-    return this;
+  public boolean isEstado() {
+    return this.estado;
   }
 
-  public Persona nombres(String nombres) {
+  public boolean getEstado() {
+    return this.estado;
+  }
+
+  public void setEstado(boolean estado) {
+    this.estado = estado;
+  }
+
+  public String getPassword() {
+    return this.password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
+  public CreateMentor nombres(String nombres) {
     setNombres(nombres);
     return this;
   }
 
-  public Persona correo(String correo) {
+  public CreateMentor correo(String correo) {
     setCorreo(correo);
     return this;
   }
 
-  public Persona telefono(String telefono) {
+  public CreateMentor telefono(String telefono) {
     setTelefono(telefono);
     return this;
   }
 
-  public Persona departamento(String departamento) {
+  public CreateMentor departamento(String departamento) {
     setDepartamento(departamento);
     return this;
   }
 
-  public Persona ciudad(String ciudad) {
+  public CreateMentor ciudad(String ciudad) {
     setCiudad(ciudad);
     return this;
   }
 
-  public Persona direccion(String direccion) {
+  public CreateMentor direccion(String direccion) {
     setDireccion(direccion);
     return this;
   }
 
-  public Persona fechaNacimiento(Date fechaNacimiento) {
+  public CreateMentor fechaNacimiento(Date fechaNacimiento) {
     setFechaNacimiento(fechaNacimiento);
     return this;
   }
 
-  public Persona genero(GENERO genero) {
+  public CreateMentor genero(GENERO genero) {
     setGenero(genero);
     return this;
   }
 
-  public Persona nacionalidad(String nacionalidad) {
+  public CreateMentor nacionalidad(String nacionalidad) {
     setNacionalidad(nacionalidad);
     return this;
   }
 
-  public Persona estrato(Byte estrato) {
+  public CreateMentor estrato(Byte estrato) {
     setEstrato(estrato);
     return this;
   }
 
-  public Persona tipoPoblacion(String tipoPoblacion) {
+  public CreateMentor tipoPoblacion(String tipoPoblacion) {
     setTipoPoblacion(tipoPoblacion);
     return this;
   }
 
-  public Persona nivelEducativo(NivelEducativo nivelEducativo) {
+  public CreateMentor nivelEducativo(NivelEducativo nivelEducativo) {
     setNivelEducativo(nivelEducativo);
+    return this;
+  }
+
+  public CreateMentor estado(boolean estado) {
+    setEstado(estado);
+    return this;
+  }
+
+  public CreateMentor password(String password) {
+    setPassword(password);
     return this;
   }
 
@@ -254,30 +247,30 @@ public abstract class Persona {
   public boolean equals(Object o) {
     if (o == this)
       return true;
-    if (!(o instanceof Persona)) {
+    if (!(o instanceof CreateMentor)) {
       return false;
     }
-    Persona persona = (Persona) o;
-    return Objects.equals(id, persona.id) && Objects.equals(nombres, persona.nombres)
-        && Objects.equals(correo, persona.correo) && Objects.equals(telefono, persona.telefono)
-        && Objects.equals(departamento, persona.departamento) && Objects.equals(ciudad, persona.ciudad)
-        && Objects.equals(direccion, persona.direccion) && Objects.equals(fechaNacimiento, persona.fechaNacimiento)
-        && Objects.equals(genero, persona.genero) && Objects.equals(nacionalidad, persona.nacionalidad)
-        && Objects.equals(estrato, persona.estrato) && Objects.equals(tipoPoblacion, persona.tipoPoblacion)
-        && Objects.equals(nivelEducativo, persona.nivelEducativo);
+    CreateMentor createMentor = (CreateMentor) o;
+    return Objects.equals(nombres, createMentor.nombres) && Objects.equals(correo, createMentor.correo)
+        && Objects.equals(telefono, createMentor.telefono) && Objects.equals(departamento, createMentor.departamento)
+        && Objects.equals(ciudad, createMentor.ciudad) && Objects.equals(direccion, createMentor.direccion)
+        && Objects.equals(fechaNacimiento, createMentor.fechaNacimiento) && Objects.equals(genero, createMentor.genero)
+        && Objects.equals(nacionalidad, createMentor.nacionalidad) && Objects.equals(estrato, createMentor.estrato)
+        && Objects.equals(tipoPoblacion, createMentor.tipoPoblacion)
+        && Objects.equals(nivelEducativo, createMentor.nivelEducativo) && estado == createMentor.estado
+        && Objects.equals(password, createMentor.password);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, nombres, correo, telefono, departamento, ciudad, direccion, fechaNacimiento, genero,
-        nacionalidad, estrato, tipoPoblacion, nivelEducativo);
+    return Objects.hash(nombres, correo, telefono, departamento, ciudad, direccion, fechaNacimiento, genero,
+        nacionalidad, estrato, tipoPoblacion, nivelEducativo, estado, password);
   }
 
   @Override
   public String toString() {
     return "{" +
-        " id='" + getId() + "'" +
-        ", nombres='" + getNombres() + "'" +
+        " nombres='" + getNombres() + "'" +
         ", correo='" + getCorreo() + "'" +
         ", telefono='" + getTelefono() + "'" +
         ", departamento='" + getDepartamento() + "'" +
@@ -289,6 +282,8 @@ public abstract class Persona {
         ", estrato='" + getEstrato() + "'" +
         ", tipoPoblacion='" + getTipoPoblacion() + "'" +
         ", nivelEducativo='" + getNivelEducativo() + "'" +
+        ", estado='" + isEstado() + "'" +
+        ", password='" + getPassword() + "'" +
         "}";
   }
 

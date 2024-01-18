@@ -1,72 +1,49 @@
-package com.makaia.grupo4.entrevista.models;
+package com.makaia.grupo4.entrevista.dto;
 
+import com.makaia.grupo4.entrevista.enums.ESTADO;
 import com.makaia.grupo4.entrevista.enums.GENERO;
 import com.makaia.grupo4.entrevista.enums.NivelEducativo;
+import com.makaia.grupo4.entrevista.enums.TIPO;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
-import java.util.Date;
+import java.sql.Date;
 import java.util.Objects;
 
-@Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Persona {
+public class CreateAspirante {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  protected Long id;
+  private String nombres;
 
-  @Column
-  protected String nombres;
+  private String correo;
 
-  @Column
-  protected String correo;
+  private String telefono;
 
-  @Column
-  protected String telefono;
+  private String departamento;
 
-  @Column
-  protected String departamento;
+  private String ciudad;
 
-  @Column
-  protected String ciudad;
+  private String direccion;
 
-  @Column
-  protected String direccion;
+  private Date fechaNacimiento;
 
-  @Column
-  protected Date fechaNacimiento;
+  private GENERO genero;
 
-  @Column
-  @Enumerated(EnumType.STRING)
-  protected GENERO genero;
+  private String nacionalidad;
 
-  @Column
-  protected String nacionalidad;
+  private Byte estrato;
 
-  @Column
-  protected Byte estrato;
+  private String tipoPoblacion;
 
-  @Column
-  protected String tipoPoblacion;
+  private NivelEducativo nivelEducativo;
 
-  @Column
-  @Enumerated(EnumType.STRING)
-  protected NivelEducativo nivelEducativo;
+  private TIPO tipo;
 
-  public Persona() {
+  private ESTADO estado;
+
+  public CreateAspirante() {
   }
 
-  public Persona(String nombres, String correo, String telefono, String departamento, String ciudad, String direccion,
-      Date fechaNacimiento, GENERO genero, String nacionalidad, Byte estrato, String tipoPoblacion,
-      NivelEducativo nivelEducativo) {
+  public CreateAspirante(String nombres, String correo, String telefono, String departamento, String ciudad,
+      String direccion, Date fechaNacimiento, GENERO genero, String nacionalidad, Byte estrato, String tipoPoblacion,
+      NivelEducativo nivelEducativo, TIPO tipo, ESTADO estado) {
     this.nombres = nombres;
     this.correo = correo;
     this.telefono = telefono;
@@ -79,14 +56,8 @@ public abstract class Persona {
     this.estrato = estrato;
     this.tipoPoblacion = tipoPoblacion;
     this.nivelEducativo = nivelEducativo;
-  }
-
-  public Long getId() {
-    return this.id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
+    this.tipo = tipo;
+    this.estado = estado;
   }
 
   public String getNombres() {
@@ -185,68 +156,89 @@ public abstract class Persona {
     this.nivelEducativo = nivelEducativo;
   }
 
-  public Persona id(Long id) {
-    setId(id);
-    return this;
+  public TIPO getTipo() {
+    return this.tipo;
   }
 
-  public Persona nombres(String nombres) {
+  public void setTipo(TIPO tipo) {
+    this.tipo = tipo;
+  }
+
+  public ESTADO getEstado() {
+    return this.estado;
+  }
+
+  public void setEstado(ESTADO estado) {
+    this.estado = estado;
+  }
+
+  public CreateAspirante nombres(String nombres) {
     setNombres(nombres);
     return this;
   }
 
-  public Persona correo(String correo) {
+  public CreateAspirante correo(String correo) {
     setCorreo(correo);
     return this;
   }
 
-  public Persona telefono(String telefono) {
+  public CreateAspirante telefono(String telefono) {
     setTelefono(telefono);
     return this;
   }
 
-  public Persona departamento(String departamento) {
+  public CreateAspirante departamento(String departamento) {
     setDepartamento(departamento);
     return this;
   }
 
-  public Persona ciudad(String ciudad) {
+  public CreateAspirante ciudad(String ciudad) {
     setCiudad(ciudad);
     return this;
   }
 
-  public Persona direccion(String direccion) {
+  public CreateAspirante direccion(String direccion) {
     setDireccion(direccion);
     return this;
   }
 
-  public Persona fechaNacimiento(Date fechaNacimiento) {
+  public CreateAspirante fechaNacimiento(Date fechaNacimiento) {
     setFechaNacimiento(fechaNacimiento);
     return this;
   }
 
-  public Persona genero(GENERO genero) {
+  public CreateAspirante genero(GENERO genero) {
     setGenero(genero);
     return this;
   }
 
-  public Persona nacionalidad(String nacionalidad) {
+  public CreateAspirante nacionalidad(String nacionalidad) {
     setNacionalidad(nacionalidad);
     return this;
   }
 
-  public Persona estrato(Byte estrato) {
+  public CreateAspirante estrato(Byte estrato) {
     setEstrato(estrato);
     return this;
   }
 
-  public Persona tipoPoblacion(String tipoPoblacion) {
+  public CreateAspirante tipoPoblacion(String tipoPoblacion) {
     setTipoPoblacion(tipoPoblacion);
     return this;
   }
 
-  public Persona nivelEducativo(NivelEducativo nivelEducativo) {
+  public CreateAspirante nivelEducativo(NivelEducativo nivelEducativo) {
     setNivelEducativo(nivelEducativo);
+    return this;
+  }
+
+  public CreateAspirante tipo(TIPO tipo) {
+    setTipo(tipo);
+    return this;
+  }
+
+  public CreateAspirante estado(ESTADO estado) {
+    setEstado(estado);
     return this;
   }
 
@@ -254,30 +246,32 @@ public abstract class Persona {
   public boolean equals(Object o) {
     if (o == this)
       return true;
-    if (!(o instanceof Persona)) {
+    if (!(o instanceof CreateAspirante)) {
       return false;
     }
-    Persona persona = (Persona) o;
-    return Objects.equals(id, persona.id) && Objects.equals(nombres, persona.nombres)
-        && Objects.equals(correo, persona.correo) && Objects.equals(telefono, persona.telefono)
-        && Objects.equals(departamento, persona.departamento) && Objects.equals(ciudad, persona.ciudad)
-        && Objects.equals(direccion, persona.direccion) && Objects.equals(fechaNacimiento, persona.fechaNacimiento)
-        && Objects.equals(genero, persona.genero) && Objects.equals(nacionalidad, persona.nacionalidad)
-        && Objects.equals(estrato, persona.estrato) && Objects.equals(tipoPoblacion, persona.tipoPoblacion)
-        && Objects.equals(nivelEducativo, persona.nivelEducativo);
+    CreateAspirante createAspirante = (CreateAspirante) o;
+    return Objects.equals(nombres, createAspirante.nombres) && Objects.equals(correo, createAspirante.correo)
+        && Objects.equals(telefono, createAspirante.telefono)
+        && Objects.equals(departamento, createAspirante.departamento) && Objects.equals(ciudad, createAspirante.ciudad)
+        && Objects.equals(direccion, createAspirante.direccion)
+        && Objects.equals(fechaNacimiento, createAspirante.fechaNacimiento)
+        && Objects.equals(genero, createAspirante.genero) && Objects.equals(nacionalidad, createAspirante.nacionalidad)
+        && Objects.equals(estrato, createAspirante.estrato)
+        && Objects.equals(tipoPoblacion, createAspirante.tipoPoblacion)
+        && Objects.equals(nivelEducativo, createAspirante.nivelEducativo) && Objects.equals(tipo, createAspirante.tipo)
+        && Objects.equals(estado, createAspirante.estado);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, nombres, correo, telefono, departamento, ciudad, direccion, fechaNacimiento, genero,
-        nacionalidad, estrato, tipoPoblacion, nivelEducativo);
+    return Objects.hash(nombres, correo, telefono, departamento, ciudad, direccion, fechaNacimiento, genero,
+        nacionalidad, estrato, tipoPoblacion, nivelEducativo, tipo, estado);
   }
 
   @Override
   public String toString() {
     return "{" +
-        " id='" + getId() + "'" +
-        ", nombres='" + getNombres() + "'" +
+        " nombres='" + getNombres() + "'" +
         ", correo='" + getCorreo() + "'" +
         ", telefono='" + getTelefono() + "'" +
         ", departamento='" + getDepartamento() + "'" +
@@ -289,6 +283,8 @@ public abstract class Persona {
         ", estrato='" + getEstrato() + "'" +
         ", tipoPoblacion='" + getTipoPoblacion() + "'" +
         ", nivelEducativo='" + getNivelEducativo() + "'" +
+        ", tipo='" + getTipo() + "'" +
+        ", estado='" + getEstado() + "'" +
         "}";
   }
 

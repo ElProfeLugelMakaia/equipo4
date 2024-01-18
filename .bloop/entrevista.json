@@ -24,9 +24,6 @@
             "C:\\Users\\Manuel Fernandez\\.m2\\repository\\org\\yaml\\snakeyaml\\2.2\\snakeyaml-2.2.jar",
             "C:\\Users\\Manuel Fernandez\\.m2\\repository\\org\\springframework\\boot\\spring-boot-actuator-autoconfigure\\3.2.1\\spring-boot-actuator-autoconfigure-3.2.1.jar",
             "C:\\Users\\Manuel Fernandez\\.m2\\repository\\org\\springframework\\boot\\spring-boot-actuator\\3.2.1\\spring-boot-actuator-3.2.1.jar",
-            "C:\\Users\\Manuel Fernandez\\.m2\\repository\\com\\fasterxml\\jackson\\core\\jackson-databind\\2.15.3\\jackson-databind-2.15.3.jar",
-            "C:\\Users\\Manuel Fernandez\\.m2\\repository\\com\\fasterxml\\jackson\\core\\jackson-annotations\\2.15.3\\jackson-annotations-2.15.3.jar",
-            "C:\\Users\\Manuel Fernandez\\.m2\\repository\\com\\fasterxml\\jackson\\core\\jackson-core\\2.15.3\\jackson-core-2.15.3.jar",
             "C:\\Users\\Manuel Fernandez\\.m2\\repository\\com\\fasterxml\\jackson\\datatype\\jackson-datatype-jsr310\\2.15.3\\jackson-datatype-jsr310-2.15.3.jar",
             "C:\\Users\\Manuel Fernandez\\.m2\\repository\\io\\micrometer\\micrometer-observation\\1.12.1\\micrometer-observation-1.12.1.jar",
             "C:\\Users\\Manuel Fernandez\\.m2\\repository\\io\\micrometer\\micrometer-commons\\1.12.1\\micrometer-commons-1.12.1.jar",
@@ -65,13 +62,29 @@
             "C:\\Users\\Manuel Fernandez\\.m2\\repository\\org\\apache\\tomcat\\embed\\tomcat-embed-websocket\\10.1.17\\tomcat-embed-websocket-10.1.17.jar",
             "C:\\Users\\Manuel Fernandez\\.m2\\repository\\org\\springframework\\spring-web\\6.1.2\\spring-web-6.1.2.jar",
             "C:\\Users\\Manuel Fernandez\\.m2\\repository\\org\\springframework\\spring-webmvc\\6.1.2\\spring-webmvc-6.1.2.jar",
+            "C:\\Users\\Manuel Fernandez\\.m2\\repository\\org\\springdoc\\springdoc-openapi-starter-webmvc-ui\\2.3.0\\springdoc-openapi-starter-webmvc-ui-2.3.0.jar",
+            "C:\\Users\\Manuel Fernandez\\.m2\\repository\\org\\springdoc\\springdoc-openapi-starter-webmvc-api\\2.3.0\\springdoc-openapi-starter-webmvc-api-2.3.0.jar",
+            "C:\\Users\\Manuel Fernandez\\.m2\\repository\\org\\springdoc\\springdoc-openapi-starter-common\\2.3.0\\springdoc-openapi-starter-common-2.3.0.jar",
+            "C:\\Users\\Manuel Fernandez\\.m2\\repository\\io\\swagger\\core\\v3\\swagger-core-jakarta\\2.2.19\\swagger-core-jakarta-2.2.19.jar",
+            "C:\\Users\\Manuel Fernandez\\.m2\\repository\\org\\apache\\commons\\commons-lang3\\3.13.0\\commons-lang3-3.13.0.jar",
+            "C:\\Users\\Manuel Fernandez\\.m2\\repository\\io\\swagger\\core\\v3\\swagger-annotations-jakarta\\2.2.19\\swagger-annotations-jakarta-2.2.19.jar",
+            "C:\\Users\\Manuel Fernandez\\.m2\\repository\\io\\swagger\\core\\v3\\swagger-models-jakarta\\2.2.19\\swagger-models-jakarta-2.2.19.jar",
+            "C:\\Users\\Manuel Fernandez\\.m2\\repository\\jakarta\\validation\\jakarta.validation-api\\3.0.2\\jakarta.validation-api-3.0.2.jar",
+            "C:\\Users\\Manuel Fernandez\\.m2\\repository\\com\\fasterxml\\jackson\\dataformat\\jackson-dataformat-yaml\\2.15.3\\jackson-dataformat-yaml-2.15.3.jar",
+            "C:\\Users\\Manuel Fernandez\\.m2\\repository\\org\\webjars\\swagger-ui\\5.10.3\\swagger-ui-5.10.3.jar",
             "C:\\Users\\Manuel Fernandez\\.m2\\repository\\org\\springframework\\boot\\spring-boot\\3.2.1\\spring-boot-3.2.1.jar",
             "C:\\Users\\Manuel Fernandez\\.m2\\repository\\org\\springframework\\boot\\spring-boot-autoconfigure\\3.2.1\\spring-boot-autoconfigure-3.2.1.jar",
             "C:\\Users\\Manuel Fernandez\\.m2\\repository\\org\\projectlombok\\lombok\\1.18.30\\lombok-1.18.30.jar",
+            "C:\\Users\\Manuel Fernandez\\.m2\\repository\\jakarta\\xml\\bind\\jakarta.xml.bind-api\\4.0.1\\jakarta.xml.bind-api-4.0.1.jar",
+            "C:\\Users\\Manuel Fernandez\\.m2\\repository\\jakarta\\activation\\jakarta.activation-api\\2.1.2\\jakarta.activation-api-2.1.2.jar",
             "C:\\Users\\Manuel Fernandez\\.m2\\repository\\org\\springframework\\spring-core\\6.1.2\\spring-core-6.1.2.jar",
             "C:\\Users\\Manuel Fernandez\\.m2\\repository\\org\\springframework\\spring-jcl\\6.1.2\\spring-jcl-6.1.2.jar",
             "C:\\Users\\Manuel Fernandez\\.m2\\repository\\org\\springframework\\security\\spring-security-core\\6.2.1\\spring-security-core-6.2.1.jar",
-            "C:\\Users\\Manuel Fernandez\\.m2\\repository\\org\\springframework\\security\\spring-security-crypto\\6.2.1\\spring-security-crypto-6.2.1.jar"
+            "C:\\Users\\Manuel Fernandez\\.m2\\repository\\org\\springframework\\security\\spring-security-crypto\\6.2.1\\spring-security-crypto-6.2.1.jar",
+            "C:\\Users\\Manuel Fernandez\\.m2\\repository\\io\\jsonwebtoken\\jjwt-api\\0.12.3\\jjwt-api-0.12.3.jar",
+            "C:\\Users\\Manuel Fernandez\\.m2\\repository\\com\\fasterxml\\jackson\\core\\jackson-databind\\2.15.3\\jackson-databind-2.15.3.jar",
+            "C:\\Users\\Manuel Fernandez\\.m2\\repository\\com\\fasterxml\\jackson\\core\\jackson-annotations\\2.15.3\\jackson-annotations-2.15.3.jar",
+            "C:\\Users\\Manuel Fernandez\\.m2\\repository\\com\\fasterxml\\jackson\\core\\jackson-core\\2.15.3\\jackson-core-2.15.3.jar"
         ],
         "out": "D:\\Projects\\Java\\WorkShopFinal\\Entrevista\\target",
         "classesDir": "D:\\Projects\\Java\\WorkShopFinal\\Entrevista\\target\\classes",
@@ -157,6 +170,22 @@
         },
         "resolution": {
             "modules": [
+                {
+                    "organization": "org.apache.commons",
+                    "name": "commons-lang3",
+                    "version": "3.13.0",
+                    "artifacts": [
+                        {
+                            "name": "commons-lang3",
+                            "path": "C:\\Users\\Manuel Fernandez\\.m2\\repository\\org\\apache\\commons\\commons-lang3\\3.13.0\\commons-lang3-3.13.0.jar"
+                        },
+                        {
+                            "name": "commons-lang3",
+                            "classifier": "sources",
+                            "path": "C:\\Users\\Manuel Fernandez\\.m2\\repository\\org\\apache\\commons\\commons-lang3\\3.13.0\\commons-lang3-3.13.0-sources.jar"
+                        }
+                    ]
+                },
                 {
                     "organization": "com.fasterxml.jackson.datatype",
                     "name": "jackson-datatype-jdk8",
@@ -314,6 +343,22 @@
                             "name": "spring-webmvc",
                             "classifier": "sources",
                             "path": "C:\\Users\\Manuel Fernandez\\.m2\\repository\\org\\springframework\\spring-webmvc\\6.1.2\\spring-webmvc-6.1.2-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.springdoc",
+                    "name": "springdoc-openapi-starter-webmvc-api",
+                    "version": "2.3.0",
+                    "artifacts": [
+                        {
+                            "name": "springdoc-openapi-starter-webmvc-api",
+                            "path": "C:\\Users\\Manuel Fernandez\\.m2\\repository\\org\\springdoc\\springdoc-openapi-starter-webmvc-api\\2.3.0\\springdoc-openapi-starter-webmvc-api-2.3.0.jar"
+                        },
+                        {
+                            "name": "springdoc-openapi-starter-webmvc-api",
+                            "classifier": "sources",
+                            "path": "C:\\Users\\Manuel Fernandez\\.m2\\repository\\org\\springdoc\\springdoc-openapi-starter-webmvc-api\\2.3.0\\springdoc-openapi-starter-webmvc-api-2.3.0-sources.jar"
                         }
                     ]
                 },
@@ -830,6 +875,17 @@
                     ]
                 },
                 {
+                    "organization": "org.webjars",
+                    "name": "swagger-ui",
+                    "version": "5.10.3",
+                    "artifacts": [
+                        {
+                            "name": "swagger-ui",
+                            "path": "C:\\Users\\Manuel Fernandez\\.m2\\repository\\org\\webjars\\swagger-ui\\5.10.3\\swagger-ui-5.10.3.jar"
+                        }
+                    ]
+                },
+                {
                     "organization": "org.apache.logging.log4j",
                     "name": "log4j-to-slf4j",
                     "version": "2.21.1",
@@ -890,6 +946,22 @@
                             "name": "snakeyaml",
                             "classifier": "sources",
                             "path": "C:\\Users\\Manuel Fernandez\\.m2\\repository\\org\\yaml\\snakeyaml\\2.2\\snakeyaml-2.2-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "io.jsonwebtoken",
+                    "name": "jjwt-jackson",
+                    "version": "0.12.3",
+                    "artifacts": [
+                        {
+                            "name": "jjwt-jackson",
+                            "path": "C:\\Users\\Manuel Fernandez\\.m2\\repository\\io\\jsonwebtoken\\jjwt-jackson\\0.12.3\\jjwt-jackson-0.12.3.jar"
+                        },
+                        {
+                            "name": "jjwt-jackson",
+                            "classifier": "sources",
+                            "path": "C:\\Users\\Manuel Fernandez\\.m2\\repository\\io\\jsonwebtoken\\jjwt-jackson\\0.12.3\\jjwt-jackson-0.12.3-sources.jar"
                         }
                     ]
                 },
@@ -974,6 +1046,22 @@
                     ]
                 },
                 {
+                    "organization": "io.swagger.core.v3",
+                    "name": "swagger-core-jakarta",
+                    "version": "2.2.19",
+                    "artifacts": [
+                        {
+                            "name": "swagger-core-jakarta",
+                            "path": "C:\\Users\\Manuel Fernandez\\.m2\\repository\\io\\swagger\\core\\v3\\swagger-core-jakarta\\2.2.19\\swagger-core-jakarta-2.2.19.jar"
+                        },
+                        {
+                            "name": "swagger-core-jakarta",
+                            "classifier": "sources",
+                            "path": "C:\\Users\\Manuel Fernandez\\.m2\\repository\\io\\swagger\\core\\v3\\swagger-core-jakarta\\2.2.19\\swagger-core-jakarta-2.2.19-sources.jar"
+                        }
+                    ]
+                },
+                {
                     "organization": "jakarta.annotation",
                     "name": "jakarta.annotation-api",
                     "version": "2.1.1",
@@ -1034,6 +1122,22 @@
                             "name": "spring-boot-starter-web",
                             "classifier": "sources",
                             "path": "C:\\Users\\Manuel Fernandez\\.m2\\repository\\org\\springframework\\boot\\spring-boot-starter-web\\3.2.1\\spring-boot-starter-web-3.2.1-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.springdoc",
+                    "name": "springdoc-openapi-starter-webmvc-ui",
+                    "version": "2.3.0",
+                    "artifacts": [
+                        {
+                            "name": "springdoc-openapi-starter-webmvc-ui",
+                            "path": "C:\\Users\\Manuel Fernandez\\.m2\\repository\\org\\springdoc\\springdoc-openapi-starter-webmvc-ui\\2.3.0\\springdoc-openapi-starter-webmvc-ui-2.3.0.jar"
+                        },
+                        {
+                            "name": "springdoc-openapi-starter-webmvc-ui",
+                            "classifier": "sources",
+                            "path": "C:\\Users\\Manuel Fernandez\\.m2\\repository\\org\\springdoc\\springdoc-openapi-starter-webmvc-ui\\2.3.0\\springdoc-openapi-starter-webmvc-ui-2.3.0-sources.jar"
                         }
                     ]
                 },
@@ -1134,6 +1238,22 @@
                     ]
                 },
                 {
+                    "organization": "io.swagger.core.v3",
+                    "name": "swagger-annotations-jakarta",
+                    "version": "2.2.19",
+                    "artifacts": [
+                        {
+                            "name": "swagger-annotations-jakarta",
+                            "path": "C:\\Users\\Manuel Fernandez\\.m2\\repository\\io\\swagger\\core\\v3\\swagger-annotations-jakarta\\2.2.19\\swagger-annotations-jakarta-2.2.19.jar"
+                        },
+                        {
+                            "name": "swagger-annotations-jakarta",
+                            "classifier": "sources",
+                            "path": "C:\\Users\\Manuel Fernandez\\.m2\\repository\\io\\swagger\\core\\v3\\swagger-annotations-jakarta\\2.2.19\\swagger-annotations-jakarta-2.2.19-sources.jar"
+                        }
+                    ]
+                },
+                {
                     "organization": "org.apache.tomcat.embed",
                     "name": "tomcat-embed-el",
                     "version": "10.1.17",
@@ -1162,6 +1282,54 @@
                             "name": "jakarta.inject-api",
                             "classifier": "sources",
                             "path": "C:\\Users\\Manuel Fernandez\\.m2\\repository\\jakarta\\inject\\jakarta.inject-api\\2.0.1\\jakarta.inject-api-2.0.1-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "io.swagger.core.v3",
+                    "name": "swagger-models-jakarta",
+                    "version": "2.2.19",
+                    "artifacts": [
+                        {
+                            "name": "swagger-models-jakarta",
+                            "path": "C:\\Users\\Manuel Fernandez\\.m2\\repository\\io\\swagger\\core\\v3\\swagger-models-jakarta\\2.2.19\\swagger-models-jakarta-2.2.19.jar"
+                        },
+                        {
+                            "name": "swagger-models-jakarta",
+                            "classifier": "sources",
+                            "path": "C:\\Users\\Manuel Fernandez\\.m2\\repository\\io\\swagger\\core\\v3\\swagger-models-jakarta\\2.2.19\\swagger-models-jakarta-2.2.19-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "jakarta.validation",
+                    "name": "jakarta.validation-api",
+                    "version": "3.0.2",
+                    "artifacts": [
+                        {
+                            "name": "jakarta.validation-api",
+                            "path": "C:\\Users\\Manuel Fernandez\\.m2\\repository\\jakarta\\validation\\jakarta.validation-api\\3.0.2\\jakarta.validation-api-3.0.2.jar"
+                        },
+                        {
+                            "name": "jakarta.validation-api",
+                            "classifier": "sources",
+                            "path": "C:\\Users\\Manuel Fernandez\\.m2\\repository\\jakarta\\validation\\jakarta.validation-api\\3.0.2\\jakarta.validation-api-3.0.2-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "io.jsonwebtoken",
+                    "name": "jjwt-api",
+                    "version": "0.12.3",
+                    "artifacts": [
+                        {
+                            "name": "jjwt-api",
+                            "path": "C:\\Users\\Manuel Fernandez\\.m2\\repository\\io\\jsonwebtoken\\jjwt-api\\0.12.3\\jjwt-api-0.12.3.jar"
+                        },
+                        {
+                            "name": "jjwt-api",
+                            "classifier": "sources",
+                            "path": "C:\\Users\\Manuel Fernandez\\.m2\\repository\\io\\jsonwebtoken\\jjwt-api\\0.12.3\\jjwt-api-0.12.3-sources.jar"
                         }
                     ]
                 },
@@ -1406,6 +1574,22 @@
                     ]
                 },
                 {
+                    "organization": "io.jsonwebtoken",
+                    "name": "jjwt-impl",
+                    "version": "0.12.3",
+                    "artifacts": [
+                        {
+                            "name": "jjwt-impl",
+                            "path": "C:\\Users\\Manuel Fernandez\\.m2\\repository\\io\\jsonwebtoken\\jjwt-impl\\0.12.3\\jjwt-impl-0.12.3.jar"
+                        },
+                        {
+                            "name": "jjwt-impl",
+                            "classifier": "sources",
+                            "path": "C:\\Users\\Manuel Fernandez\\.m2\\repository\\io\\jsonwebtoken\\jjwt-impl\\0.12.3\\jjwt-impl-0.12.3-sources.jar"
+                        }
+                    ]
+                },
+                {
                     "organization": "org.springframework.boot",
                     "name": "spring-boot-starter-security",
                     "version": "3.2.1",
@@ -1418,6 +1602,22 @@
                             "name": "spring-boot-starter-security",
                             "classifier": "sources",
                             "path": "C:\\Users\\Manuel Fernandez\\.m2\\repository\\org\\springframework\\boot\\spring-boot-starter-security\\3.2.1\\spring-boot-starter-security-3.2.1-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.fasterxml.jackson.dataformat",
+                    "name": "jackson-dataformat-yaml",
+                    "version": "2.15.3",
+                    "artifacts": [
+                        {
+                            "name": "jackson-dataformat-yaml",
+                            "path": "C:\\Users\\Manuel Fernandez\\.m2\\repository\\com\\fasterxml\\jackson\\dataformat\\jackson-dataformat-yaml\\2.15.3\\jackson-dataformat-yaml-2.15.3.jar"
+                        },
+                        {
+                            "name": "jackson-dataformat-yaml",
+                            "classifier": "sources",
+                            "path": "C:\\Users\\Manuel Fernandez\\.m2\\repository\\com\\fasterxml\\jackson\\dataformat\\jackson-dataformat-yaml\\2.15.3\\jackson-dataformat-yaml-2.15.3-sources.jar"
                         }
                     ]
                 },
@@ -1594,6 +1794,22 @@
                             "name": "spring-boot-starter-jdbc",
                             "classifier": "sources",
                             "path": "C:\\Users\\Manuel Fernandez\\.m2\\repository\\org\\springframework\\boot\\spring-boot-starter-jdbc\\3.2.1\\spring-boot-starter-jdbc-3.2.1-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.springdoc",
+                    "name": "springdoc-openapi-starter-common",
+                    "version": "2.3.0",
+                    "artifacts": [
+                        {
+                            "name": "springdoc-openapi-starter-common",
+                            "path": "C:\\Users\\Manuel Fernandez\\.m2\\repository\\org\\springdoc\\springdoc-openapi-starter-common\\2.3.0\\springdoc-openapi-starter-common-2.3.0.jar"
+                        },
+                        {
+                            "name": "springdoc-openapi-starter-common",
+                            "classifier": "sources",
+                            "path": "C:\\Users\\Manuel Fernandez\\.m2\\repository\\org\\springdoc\\springdoc-openapi-starter-common\\2.3.0\\springdoc-openapi-starter-common-2.3.0-sources.jar"
                         }
                     ]
                 },
