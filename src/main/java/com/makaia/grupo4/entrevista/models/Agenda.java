@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.util.Objects;
 
@@ -28,16 +29,16 @@ public class Agenda {
 
     @ManyToOne
     @JoinColumn(nullable = false)
-    private Mentor mentora;
+    private Mentor mentor;
 
     public Agenda() {
     }
 
-    public Agenda(Date fecha, boolean estado, Mentor mentora) {
+    public Agenda(Date fecha, boolean estado, Mentor mentor) {
 
         this.fecha = fecha;
         this.estado = estado;
-        this.mentora = mentora;
+        this.mentor = mentor;
     }
 
     public Long getId() {
@@ -68,12 +69,12 @@ public class Agenda {
         this.estado = estado;
     }
 
-    public Mentor getMentora() {
-        return this.mentora;
+    public Mentor getMentor() {
+        return this.mentor;
     }
 
-    public void setMentora(Mentor mentora) {
-        this.mentora = mentora;
+    public void setMentor(Mentor mentora) {
+        this.mentor = mentora;
     }
 
     public Agenda id(Long id) {
@@ -91,8 +92,8 @@ public class Agenda {
         return this;
     }
 
-    public Agenda mentora(Mentor mentora) {
-        setMentora(mentora);
+    public Agenda mentor(Mentor mentor) {
+        setMentor(mentor);
         return this;
     }
 
@@ -105,12 +106,12 @@ public class Agenda {
         }
         Agenda agenda = (Agenda) o;
         return Objects.equals(id, agenda.id) && Objects.equals(fecha, agenda.fecha) && estado == agenda.estado
-                && Objects.equals(mentora, agenda.mentora);
+                && Objects.equals(mentor, agenda.mentor);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, fecha, estado, mentora);
+        return Objects.hash(id, fecha, estado, mentor);
     }
 
     @Override
@@ -119,7 +120,7 @@ public class Agenda {
                 " id='" + getId() + "'" +
                 ", fecha='" + getFecha() + "'" +
                 ", estado='" + isEstado() + "'" +
-                ", mentora='" + getMentora() + "'" +
+                ", mentora='" + getMentor() + "'" +
                 "}";
     }
 

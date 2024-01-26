@@ -1,7 +1,7 @@
 package com.makaia.grupo4.entrevista.controllers;
 
-import com.makaia.grupo4.entrevista.dto.ResponseAspirante;
-import com.makaia.grupo4.entrevista.dto.ResponseEntrevista;
+import com.makaia.grupo4.entrevista.dto.response.ResponseAspirante;
+import com.makaia.grupo4.entrevista.dto.response.ResponseEntrevista;
 import com.makaia.grupo4.entrevista.services.AspiranteService;
 import com.makaia.grupo4.entrevista.services.EntrevistaService;
 

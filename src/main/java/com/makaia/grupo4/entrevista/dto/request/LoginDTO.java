@@ -1,4 +1,4 @@
-package com.makaia.grupo4.entrevista.dto;
+package com.makaia.grupo4.entrevista.dto.request;
 
 import java.util.Objects;
 

@@ -1,4 +1,4 @@
-package com.makaia.grupo4.entrevista.dto;
+package com.makaia.grupo4.entrevista.dto.response;
 
 import com.makaia.grupo4.entrevista.enums.ESTADO;
 import com.makaia.grupo4.entrevista.enums.TIPO;

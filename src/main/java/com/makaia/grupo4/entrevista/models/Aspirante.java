@@ -28,7 +28,7 @@ public class Aspirante extends Persona {
     private ESTADO estado;
 
     @OneToOne
-    private Entrevista entrevistas;
+    private Booking booking;
 
     public Aspirante() {
     }
@@ -73,12 +73,12 @@ public class Aspirante extends Persona {
         this.estado = estado;
     }
 
-    public Entrevista getEntrevistas() {
-        return this.entrevistas;
+    public Booking getBooking() {
+        return this.booking;
     }
 
-    public void setEntrevistas(Entrevista entrevistas) {
-        this.entrevistas = entrevistas;
+    public void setBooking(Booking booking) {
+        this.booking = booking;
     }
 
     public Aspirante tipo(TIPO tipo) {
@@ -91,8 +91,8 @@ public class Aspirante extends Persona {
         return this;
     }
 
-    public Aspirante entrevistas(Entrevista entrevistas) {
-        setEntrevistas(entrevistas);
+    public Aspirante booking(Booking booking) {
+        setBooking(booking);
         return this;
     }
 
@@ -104,21 +104,21 @@ public class Aspirante extends Persona {
             return false;
         }
         Aspirante aspirante = (Aspirante) o;
-        return Objects.equals(tipo, aspirante.tipo)
-                && Objects.equals(estado, aspirante.estado) && Objects.equals(entrevistas, aspirante.entrevistas);
+        return Objects.equals(tipo, aspirante.tipo) && Objects.equals(estado, aspirante.estado)
+                && Objects.equals(booking, aspirante.booking);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(tipo, estado, entrevistas);
+        return Objects.hash(tipo, estado, booking);
     }
 
     @Override
     public String toString() {
         return "{" +
-                ", tipo='" + getTipo() + "'" +
+                " tipo='" + getTipo() + "'" +
                 ", estado='" + getEstado() + "'" +
-                ", entrevistas='" + getEntrevistas() + "'" +
+                ", booking='" + getBooking() + "'" +
                 "}";
     }
 

@@ -1,6 +1,6 @@
 package com.makaia.grupo4.entrevista.services;
 
-import com.makaia.grupo4.entrevista.dto.ResponseEntrevista;
+import com.makaia.grupo4.entrevista.dto.response.ResponseEntrevista;
 import com.makaia.grupo4.entrevista.exceptions.EntrevistaApiException;
 import com.makaia.grupo4.entrevista.models.Aspirante;
 import com.makaia.grupo4.entrevista.models.Entrevista;

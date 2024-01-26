@@ -1,7 +1,7 @@
 package com.makaia.grupo4.entrevista.services;
 
-import com.makaia.grupo4.entrevista.dto.CreateAspirante;
-import com.makaia.grupo4.entrevista.dto.ResponseAspirante;
+import com.makaia.grupo4.entrevista.dto.request.CreateAspirante;
+import com.makaia.grupo4.entrevista.dto.response.ResponseAspirante;
 import com.makaia.grupo4.entrevista.exceptions.EntrevistaApiException;
 import com.makaia.grupo4.entrevista.models.Aspirante;
 import com.makaia.grupo4.entrevista.repositories.AspiranteRepository;

@@ -10,9 +10,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.makaia.grupo4.entrevista.dto.LoginDTO;
-import com.makaia.grupo4.entrevista.dto.ResponseLogin;
-import com.makaia.grupo4.entrevista.dto.ResponseMentor;
+import com.makaia.grupo4.entrevista.dto.request.LoginDTO;
+import com.makaia.grupo4.entrevista.dto.response.ResponseLogin;
+import com.makaia.grupo4.entrevista.dto.response.ResponseMentor;
 import com.makaia.grupo4.entrevista.exceptions.EntrevistaApiException;
 import com.makaia.grupo4.entrevista.security.AuthDetailsService;
 import com.makaia.grupo4.entrevista.security.jwt.JwtUtil;
@@ -78,7 +78,8 @@ public class UserService {
                 String token = jwtUtil.generateToken(authDetailsService.getUserDetail().getCorreo(),
                         authDetailsService.getUserDetail().getId());
                 ResponseMentor user = new ResponseMentor(authDetailsService.getUserDetail().getId(),
-                        authDetailsService.getUserDetail().getCorreo(), authDetailsService.getUserDetail().getEstado());
+                        authDetailsService.getUserDetail().getCorreo(), authDetailsService.getUserDetail().getNombres(),
+                        authDetailsService.getUserDetail().getEstado());
 
                 log.info("User {}", user);
                 return ResponseEntity.ok(new ResponseLogin(HttpStatus.ACCEPTED, token, user));

@@ -1,4 +1,4 @@
-package com.makaia.grupo4.entrevista.dto;
+package com.makaia.grupo4.entrevista.dto.response;
 
 import java.util.Date;
 import java.util.Objects;

@@ -1,9 +1,10 @@
 package com.makaia.grupo4.entrevista.services;
 
-import com.makaia.grupo4.entrevista.dto.CreateMentor;
-import com.makaia.grupo4.entrevista.dto.ResponseMentor;
+import com.makaia.grupo4.entrevista.dto.request.CreateMentor;
+import com.makaia.grupo4.entrevista.dto.response.ResponseMentor;
 import com.makaia.grupo4.entrevista.exceptions.EntrevistaApiException;
 import com.makaia.grupo4.entrevista.models.Mentor;
+import com.makaia.grupo4.entrevista.repositories.AgendaRepository;
 import com.makaia.grupo4.entrevista.repositories.MentorRespository;
 
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +25,9 @@ public class MentorService {
 
   @Autowired
   MentorRespository repository;
+
+  @Autowired
+  AgendaService agendaService;
 
   @Autowired
   private PasswordEncoder passwordEncoder;
@@ -56,6 +60,8 @@ public class MentorService {
 
     repository.save(newMentor);
 
+    agendaService.createDefaultAgendasByMentor(newMentor);
+
     return ResponseEntity.ok(convertMentorToDTO(newMentor));
   }
 
@@ -83,6 +89,7 @@ public class MentorService {
     return new ResponseMentor(
         mentor.getId(),
         mentor.getCorreo(),
+        mentor.getNombres(),
         mentor.getEstado());
   }
 

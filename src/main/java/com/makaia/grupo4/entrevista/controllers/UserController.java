@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.makaia.grupo4.entrevista.dto.CreateMentor;
-import com.makaia.grupo4.entrevista.dto.LoginDTO;
-import com.makaia.grupo4.entrevista.dto.ResponseLogin;
-import com.makaia.grupo4.entrevista.dto.ResponseMentor;
+import com.makaia.grupo4.entrevista.dto.request.CreateMentor;
+import com.makaia.grupo4.entrevista.dto.request.LoginDTO;
+import com.makaia.grupo4.entrevista.dto.response.ResponseLogin;
+import com.makaia.grupo4.entrevista.dto.response.ResponseMentor;
 import com.makaia.grupo4.entrevista.exceptions.EntrevistaApiException;
 import com.makaia.grupo4.entrevista.repositories.MentorRespository;
 import com.makaia.grupo4.entrevista.services.MentorService;

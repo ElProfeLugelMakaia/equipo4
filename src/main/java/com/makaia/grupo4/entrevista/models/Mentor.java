@@ -2,8 +2,8 @@ package com.makaia.grupo4.entrevista.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 import java.util.*;
@@ -22,8 +22,8 @@ public class Mentor extends Persona {
     @Column
     private String password;
 
-    @OneToOne
-    private Entrevista entrevistas;
+    @OneToMany
+    private List<Booking> bookings;
 
     @OneToMany
     private List<Agenda> agenda;
@@ -71,12 +71,12 @@ public class Mentor extends Persona {
         this.password = password;
     }
 
-    public Entrevista getEntrevistas() {
-        return this.entrevistas;
+    public List<Booking> getBookings() {
+        return this.bookings;
     }
 
-    public void setEntrevistas(Entrevista entrevistas) {
-        this.entrevistas = entrevistas;
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
     }
 
     public List<Agenda> getAgenda() {
@@ -97,8 +97,8 @@ public class Mentor extends Persona {
         return this;
     }
 
-    public Mentor entrevistas(Entrevista entrevistas) {
-        setEntrevistas(entrevistas);
+    public Mentor bookings(List<Booking> bookings) {
+        setBookings(bookings);
         return this;
     }
 
@@ -116,12 +116,12 @@ public class Mentor extends Persona {
         }
         Mentor mentor = (Mentor) o;
         return estado == mentor.estado && Objects.equals(password, mentor.password)
-                && Objects.equals(entrevistas, mentor.entrevistas) && Objects.equals(agenda, mentor.agenda);
+                && Objects.equals(bookings, mentor.bookings) && Objects.equals(agenda, mentor.agenda);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(estado, password, entrevistas, agenda);
+        return Objects.hash(estado, password, bookings, agenda);
     }
 
     @Override
@@ -129,7 +129,7 @@ public class Mentor extends Persona {
         return "{" +
                 " estado='" + isEstado() + "'" +
                 ", password='" + getPassword() + "'" +
-                ", entrevistas='" + getEntrevistas() + "'" +
+                ", bookings='" + getBookings() + "'" +
                 ", agenda='" + getAgenda() + "'" +
                 "}";
     }

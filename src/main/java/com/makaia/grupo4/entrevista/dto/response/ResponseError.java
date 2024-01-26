@@ -1,17 +1,15 @@
-package com.makaia.grupo4.entrevista.dto;
+package com.makaia.grupo4.entrevista.dto.response;
 
 public class ResponseError {
-    
+
     private String message;
 
     private int code;
-
 
     public ResponseError(String message, int code) {
         this.message = message;
         this.code = code;
     }
-
 
     public String getMessage() {
         return this.message;
@@ -28,6 +26,5 @@ public class ResponseError {
     public void setCode(int code) {
         this.code = code;
     }
-
 
 }

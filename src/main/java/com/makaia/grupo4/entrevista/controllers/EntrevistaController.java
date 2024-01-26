@@ -1,6 +1,6 @@
 package com.makaia.grupo4.entrevista.controllers;
 
-import com.makaia.grupo4.entrevista.dto.ResponseEntrevista;
+import com.makaia.grupo4.entrevista.dto.response.ResponseEntrevista;
 import com.makaia.grupo4.entrevista.services.EntrevistaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

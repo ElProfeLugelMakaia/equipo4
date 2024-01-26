@@ -29,10 +29,11 @@ public class SecurityConfiguration {
         httpSecurity.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authorize) -> {
                     authorize
-                            .requestMatchers("public/**", "/users/login", "/users/forgotPassword", "/users/signup")
+                            .requestMatchers("public/**", "api/v1/users/login", "api/v1/users/forgotPassword",
+                                    "api/v1/users/signup")
                             .permitAll().requestMatchers("api/v1/**").permitAll()
                             .anyRequest().authenticated();
-                }).httpBasic(Customizer.withDefaults());
+                });
 
         return httpSecurity.build();
     }

@@ -1,11 +1,14 @@
-package com.makaia.grupo4.entrevista.dto;
+package com.makaia.grupo4.entrevista.dto.request;
 
+import com.makaia.grupo4.entrevista.enums.ESTADO;
 import com.makaia.grupo4.entrevista.enums.GENERO;
 import com.makaia.grupo4.entrevista.enums.NivelEducativo;
+import com.makaia.grupo4.entrevista.enums.TIPO;
+
 import java.sql.Date;
 import java.util.Objects;
 
-public class CreateMentor {
+public class CreateAspirante {
 
   private String nombres;
 
@@ -31,16 +34,16 @@ public class CreateMentor {
 
   private NivelEducativo nivelEducativo;
 
-  private boolean estado;
+  private TIPO tipo;
 
-  private String password;
+  private ESTADO estado;
 
-  public CreateMentor() {
+  public CreateAspirante() {
   }
 
-  public CreateMentor(String nombres, String correo, String telefono, String departamento, String ciudad,
+  public CreateAspirante(String nombres, String correo, String telefono, String departamento, String ciudad,
       String direccion, Date fechaNacimiento, GENERO genero, String nacionalidad, Byte estrato, String tipoPoblacion,
-      NivelEducativo nivelEducativo, boolean estado, String password) {
+      NivelEducativo nivelEducativo, TIPO tipo, ESTADO estado) {
     this.nombres = nombres;
     this.correo = correo;
     this.telefono = telefono;
@@ -53,8 +56,8 @@ public class CreateMentor {
     this.estrato = estrato;
     this.tipoPoblacion = tipoPoblacion;
     this.nivelEducativo = nivelEducativo;
+    this.tipo = tipo;
     this.estado = estado;
-    this.password = password;
   }
 
   public String getNombres() {
@@ -153,93 +156,89 @@ public class CreateMentor {
     this.nivelEducativo = nivelEducativo;
   }
 
-  public boolean isEstado() {
+  public TIPO getTipo() {
+    return this.tipo;
+  }
+
+  public void setTipo(TIPO tipo) {
+    this.tipo = tipo;
+  }
+
+  public ESTADO getEstado() {
     return this.estado;
   }
 
-  public boolean getEstado() {
-    return this.estado;
-  }
-
-  public void setEstado(boolean estado) {
+  public void setEstado(ESTADO estado) {
     this.estado = estado;
   }
 
-  public String getPassword() {
-    return this.password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
-  }
-
-  public CreateMentor nombres(String nombres) {
+  public CreateAspirante nombres(String nombres) {
     setNombres(nombres);
     return this;
   }
 
-  public CreateMentor correo(String correo) {
+  public CreateAspirante correo(String correo) {
     setCorreo(correo);
     return this;
   }
 
-  public CreateMentor telefono(String telefono) {
+  public CreateAspirante telefono(String telefono) {
     setTelefono(telefono);
     return this;
   }
 
-  public CreateMentor departamento(String departamento) {
+  public CreateAspirante departamento(String departamento) {
     setDepartamento(departamento);
     return this;
   }
 
-  public CreateMentor ciudad(String ciudad) {
+  public CreateAspirante ciudad(String ciudad) {
     setCiudad(ciudad);
     return this;
   }
 
-  public CreateMentor direccion(String direccion) {
+  public CreateAspirante direccion(String direccion) {
     setDireccion(direccion);
     return this;
   }
 
-  public CreateMentor fechaNacimiento(Date fechaNacimiento) {
+  public CreateAspirante fechaNacimiento(Date fechaNacimiento) {
     setFechaNacimiento(fechaNacimiento);
     return this;
   }
 
-  public CreateMentor genero(GENERO genero) {
+  public CreateAspirante genero(GENERO genero) {
     setGenero(genero);
     return this;
   }
 
-  public CreateMentor nacionalidad(String nacionalidad) {
+  public CreateAspirante nacionalidad(String nacionalidad) {
     setNacionalidad(nacionalidad);
     return this;
   }
 
-  public CreateMentor estrato(Byte estrato) {
+  public CreateAspirante estrato(Byte estrato) {
     setEstrato(estrato);
     return this;
   }
 
-  public CreateMentor tipoPoblacion(String tipoPoblacion) {
+  public CreateAspirante tipoPoblacion(String tipoPoblacion) {
     setTipoPoblacion(tipoPoblacion);
     return this;
   }
 
-  public CreateMentor nivelEducativo(NivelEducativo nivelEducativo) {
+  public CreateAspirante nivelEducativo(NivelEducativo nivelEducativo) {
     setNivelEducativo(nivelEducativo);
     return this;
   }
 
-  public CreateMentor estado(boolean estado) {
-    setEstado(estado);
+  public CreateAspirante tipo(TIPO tipo) {
+    setTipo(tipo);
     return this;
   }
 
-  public CreateMentor password(String password) {
-    setPassword(password);
+  public CreateAspirante estado(ESTADO estado) {
+    setEstado(estado);
     return this;
   }
 
@@ -247,24 +246,26 @@ public class CreateMentor {
   public boolean equals(Object o) {
     if (o == this)
       return true;
-    if (!(o instanceof CreateMentor)) {
+    if (!(o instanceof CreateAspirante)) {
       return false;
     }
-    CreateMentor createMentor = (CreateMentor) o;
-    return Objects.equals(nombres, createMentor.nombres) && Objects.equals(correo, createMentor.correo)
-        && Objects.equals(telefono, createMentor.telefono) && Objects.equals(departamento, createMentor.departamento)
-        && Objects.equals(ciudad, createMentor.ciudad) && Objects.equals(direccion, createMentor.direccion)
-        && Objects.equals(fechaNacimiento, createMentor.fechaNacimiento) && Objects.equals(genero, createMentor.genero)
-        && Objects.equals(nacionalidad, createMentor.nacionalidad) && Objects.equals(estrato, createMentor.estrato)
-        && Objects.equals(tipoPoblacion, createMentor.tipoPoblacion)
-        && Objects.equals(nivelEducativo, createMentor.nivelEducativo) && estado == createMentor.estado
-        && Objects.equals(password, createMentor.password);
+    CreateAspirante createAspirante = (CreateAspirante) o;
+    return Objects.equals(nombres, createAspirante.nombres) && Objects.equals(correo, createAspirante.correo)
+        && Objects.equals(telefono, createAspirante.telefono)
+        && Objects.equals(departamento, createAspirante.departamento) && Objects.equals(ciudad, createAspirante.ciudad)
+        && Objects.equals(direccion, createAspirante.direccion)
+        && Objects.equals(fechaNacimiento, createAspirante.fechaNacimiento)
+        && Objects.equals(genero, createAspirante.genero) && Objects.equals(nacionalidad, createAspirante.nacionalidad)
+        && Objects.equals(estrato, createAspirante.estrato)
+        && Objects.equals(tipoPoblacion, createAspirante.tipoPoblacion)
+        && Objects.equals(nivelEducativo, createAspirante.nivelEducativo) && Objects.equals(tipo, createAspirante.tipo)
+        && Objects.equals(estado, createAspirante.estado);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(nombres, correo, telefono, departamento, ciudad, direccion, fechaNacimiento, genero,
-        nacionalidad, estrato, tipoPoblacion, nivelEducativo, estado, password);
+        nacionalidad, estrato, tipoPoblacion, nivelEducativo, tipo, estado);
   }
 
   @Override
@@ -282,8 +283,8 @@ public class CreateMentor {
         ", estrato='" + getEstrato() + "'" +
         ", tipoPoblacion='" + getTipoPoblacion() + "'" +
         ", nivelEducativo='" + getNivelEducativo() + "'" +
-        ", estado='" + isEstado() + "'" +
-        ", password='" + getPassword() + "'" +
+        ", tipo='" + getTipo() + "'" +
+        ", estado='" + getEstado() + "'" +
         "}";
   }
 
