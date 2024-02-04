@@ -1,5 +1,6 @@
 package com.makaia.grupo4.entrevista.security.jwt;
 
+import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.time.Instant;
 import java.util.Date;
@@ -7,14 +8,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-import javax.crypto.SecretKey;
-
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -24,10 +21,13 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class JwtUtil {
 
-    private Key secret = Jwts.SIG.HS256.key().build();
+    private Key secret = Keys
+            .hmacShaKeyFor("secretKeyiRwdA5QPQVMO8XfPXZYYnOrSgWPnsHEk".getBytes(StandardCharsets.UTF_8));
 
     public String extractEmail(String token) {
-        return extractClaims(token, Claims::getSubject);
+        String email = extractClaims(token, Claims::getSubject);
+        log.info("email: {}", email);
+        return email;
     }
 
     public Date extractExpiration(String token) {
