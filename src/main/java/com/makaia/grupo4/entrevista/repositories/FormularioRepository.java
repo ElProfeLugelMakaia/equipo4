@@ -13,11 +13,11 @@ import org.springframework.data.jpa.repository.Query;
 public interface FormularioRepository extends JpaRepository<Formulario, Long> {
 
     @Query
-    public List<Formulario> findByEntrevista(Entrevista entrevista);
+    public List<Formulario> findByEntrevistas(Entrevista entrevistas);
 
-    @Query("select f from Formulario f join f.entrevista e join e.booking b where f. b.aspirante = :aspirante")
+    @Query("select f from Formulario f join f.entrevistas e join e.booking b where b.aspirante = :aspirante")
     public Formulario findByAspirante(Aspirante aspirante);
 
-    @Query("select f from Formulario f join f.entrevista e join e.booking b where f. b.mentor = :mentor")
+    @Query("select f from Formulario f join f.entrevistas e join e.booking b where b.mentor = :mentor")
     public List<Formulario> findByMentor(Mentor mentor);
 }
