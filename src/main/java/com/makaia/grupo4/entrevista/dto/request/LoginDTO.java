@@ -5,7 +5,6 @@ import java.util.Objects;
 public class LoginDTO {
 
     private String correo;
-
     private String password;
 
     public LoginDTO() {

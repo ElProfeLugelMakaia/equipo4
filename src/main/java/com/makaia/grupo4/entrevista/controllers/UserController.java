@@ -54,6 +54,5 @@ public class UserController {
     } catch (IllegalArgumentException e) {
       throw new EntrevistaApiException(HttpStatus.BAD_REQUEST, e.getMessage());
     }
-
   }
 }
