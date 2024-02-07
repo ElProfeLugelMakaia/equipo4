@@ -6,7 +6,7 @@ COPY . .
 
 # RUN .\mvnw package -f .\pom.xml
 RUN sudo ./mvnw package -f pom.xml
-RUN mvn package -f pom.xml
+# RUN mvn package -f pom.xml
 
 FROM eclipse-temurin:21-jdk-alpine
 VOLUME /tmp
