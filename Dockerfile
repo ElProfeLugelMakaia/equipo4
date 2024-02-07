@@ -1,13 +1,19 @@
-FROM ubuntu:latest AS build
+# Primera etapa: construir la aplicación
+FROM maven:3.8.4-openjdk-21 AS build
 
-RUN apt-get update
-RUN apt-get install openjdk-21-jdk -y
+WORKDIR /app
+
 COPY . .
 
-RUN .\mvnw package -f .\pom.xml
+RUN mvn package -f pom.xml
 
-FROM eclipse-temurin:21-jdk-alpine
-VOLUME /tmp
-COPY target/*.jar app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+# Segunda etapa: ejecutar la aplicación
+FROM openjdk:21-jdk-alpine
+
+WORKDIR /app
+
+COPY --from=build /app/target/*.jar app.jar
+
+ENTRYPOINT ["java", "-jar", "app.jar"]
+
 EXPOSE 8080
