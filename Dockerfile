@@ -4,7 +4,7 @@ RUN apt-get update
 RUN apt-get install openjdk-21-jdk -y
 COPY . .
 
-RUN .\mvnw package -f .\pom.xml
+# RUN .\mvnw package -f .\pom.xml
 RUN ./mvnw package -f .\pom.xml
 RUN mvn package -f .\pom.xml
 
