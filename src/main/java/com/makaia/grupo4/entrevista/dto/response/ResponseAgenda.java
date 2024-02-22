@@ -1,13 +1,17 @@
 package com.makaia.grupo4.entrevista.dto.response;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class ResponseAgenda {
 
     private Long id;
 
-    private Date fecha;
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    private LocalDateTime fecha;
 
     private boolean estado;
 
@@ -16,7 +20,7 @@ public class ResponseAgenda {
     public ResponseAgenda() {
     }
 
-    public ResponseAgenda(Long id, Date fecha, boolean estado, Long mentora_id) {
+    public ResponseAgenda(Long id, LocalDateTime fecha, boolean estado, Long mentora_id) {
         this.id = id;
         this.fecha = fecha;
         this.estado = estado;
@@ -31,11 +35,11 @@ public class ResponseAgenda {
         this.id = id;
     }
 
-    public Date getFecha() {
+    public LocalDateTime getFecha() {
         return this.fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(LocalDateTime fecha) {
         this.fecha = fecha;
     }
 
@@ -64,7 +68,7 @@ public class ResponseAgenda {
         return this;
     }
 
-    public ResponseAgenda fecha(Date fecha) {
+    public ResponseAgenda fecha(LocalDateTime fecha) {
         setFecha(fecha);
         return this;
     }

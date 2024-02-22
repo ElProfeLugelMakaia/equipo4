@@ -12,6 +12,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
 
@@ -42,7 +44,7 @@ public abstract class Persona {
   protected String direccion;
 
   @Column
-  protected Date fechaNacimiento;
+  protected LocalDateTime fechaNacimiento;
 
   @Column
   @Enumerated(EnumType.STRING)
@@ -65,8 +67,26 @@ public abstract class Persona {
   }
 
   public Persona(String nombres, String correo, String telefono, String departamento, String ciudad, String direccion,
-      Date fechaNacimiento, GENERO genero, String nacionalidad, Byte estrato, String tipoPoblacion,
+      LocalDateTime fechaNacimiento, GENERO genero, String nacionalidad, Byte estrato, String tipoPoblacion,
       NivelEducativo nivelEducativo) {
+    this.nombres = nombres;
+    this.correo = correo;
+    this.telefono = telefono;
+    this.departamento = departamento;
+    this.ciudad = ciudad;
+    this.direccion = direccion;
+    this.fechaNacimiento = fechaNacimiento;
+    this.genero = genero;
+    this.nacionalidad = nacionalidad;
+    this.estrato = estrato;
+    this.tipoPoblacion = tipoPoblacion;
+    this.nivelEducativo = nivelEducativo;
+  }
+
+  public Persona(Long id, String nombres, String correo, String telefono, String departamento, String ciudad,
+      String direccion, LocalDateTime fechaNacimiento, GENERO genero, String nacionalidad, Byte estrato,
+      String tipoPoblacion, NivelEducativo nivelEducativo) {
+    this.id = id;
     this.nombres = nombres;
     this.correo = correo;
     this.telefono = telefono;
@@ -137,11 +157,11 @@ public abstract class Persona {
     this.direccion = direccion;
   }
 
-  public Date getFechaNacimiento() {
+  public LocalDateTime getFechaNacimiento() {
     return this.fechaNacimiento;
   }
 
-  public void setFechaNacimiento(Date fechaNacimiento) {
+  public void setFechaNacimiento(LocalDateTime fechaNacimiento) {
     this.fechaNacimiento = fechaNacimiento;
   }
 
@@ -220,7 +240,7 @@ public abstract class Persona {
     return this;
   }
 
-  public Persona fechaNacimiento(Date fechaNacimiento) {
+  public Persona fechaNacimiento(LocalDateTime fechaNacimiento) {
     setFechaNacimiento(fechaNacimiento);
     return this;
   }

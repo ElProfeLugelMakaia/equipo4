@@ -1,5 +1,6 @@
 package com.makaia.grupo4.entrevista.models;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import jakarta.persistence.Column;
@@ -21,7 +22,7 @@ public class Agenda {
     private Long id;
 
     @Column(name = "fecha")
-    private Date fecha;
+    private LocalDateTime fecha;
 
     @Column
     private boolean estado;
@@ -33,8 +34,15 @@ public class Agenda {
     public Agenda() {
     }
 
-    public Agenda(Date fecha, boolean estado, Mentor mentor) {
+    public Agenda(LocalDateTime fecha, boolean estado, Mentor mentor) {
 
+        this.fecha = fecha;
+        this.estado = estado;
+        this.mentor = mentor;
+    }
+
+    public Agenda(Long id, LocalDateTime fecha, boolean estado, Mentor mentor) {
+        this.id = id;
         this.fecha = fecha;
         this.estado = estado;
         this.mentor = mentor;
@@ -48,11 +56,11 @@ public class Agenda {
         this.id = id;
     }
 
-    public Date getFecha() {
+    public LocalDateTime getFecha() {
         return this.fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(LocalDateTime fecha) {
         this.fecha = fecha;
     }
 
@@ -72,8 +80,8 @@ public class Agenda {
         return this.mentor;
     }
 
-    public void setMentor(Mentor mentora) {
-        this.mentor = mentora;
+    public void setMentor(Mentor mentor) {
+        this.mentor = mentor;
     }
 
     public Agenda id(Long id) {
@@ -81,7 +89,7 @@ public class Agenda {
         return this;
     }
 
-    public Agenda fecha(Date fecha) {
+    public Agenda fecha(LocalDateTime fecha) {
         setFecha(fecha);
         return this;
     }
@@ -119,7 +127,7 @@ public class Agenda {
                 " id='" + getId() + "'" +
                 ", fecha='" + getFecha() + "'" +
                 ", estado='" + isEstado() + "'" +
-                ", mentora='" + getMentor() + "'" +
+                ", mentor='" + getMentor() + "'" +
                 "}";
     }
 

@@ -1,8 +1,10 @@
 package com.makaia.grupo4.entrevista.services;
 
 import com.makaia.grupo4.entrevista.dto.request.CreateFormulario;
+import com.makaia.grupo4.entrevista.dto.response.ResponseAspirante;
 import com.makaia.grupo4.entrevista.dto.response.ResponseEntrevista;
 import com.makaia.grupo4.entrevista.dto.response.ResponseFormulario;
+import com.makaia.grupo4.entrevista.dto.response.ResponseMentor;
 import com.makaia.grupo4.entrevista.exceptions.EntrevistaApiException;
 import com.makaia.grupo4.entrevista.models.Aspirante;
 import com.makaia.grupo4.entrevista.models.Entrevista;
@@ -114,6 +116,13 @@ public class FormularioService {
 
   private ResponseFormulario convertFormularioToDTO(Formulario formulario) {
     Entrevista entrevista = formulario.getEntrevistas();
+    Mentor mentor = entrevista.getBooking().getMentor();
+    ResponseMentor responseMentor = new ResponseMentor(mentor.getId(), mentor.getCorreo(), mentor.getNombres(),
+        mentor.isEstado());
+    Aspirante aspirante = entrevista.getBooking().getAspirante();
+    ResponseAspirante responseAspirante = new ResponseAspirante(aspirante.getId(), aspirante.getCorreo(),
+        aspirante.getNombres(), aspirante.getTipo(), aspirante.getEstado());
+
     return new ResponseFormulario(
         formulario.getId(),
         formulario.getPuntajeTestGorilla(),
@@ -147,6 +156,6 @@ public class FormularioService {
         formulario.getTieneElPerfil(),
         formulario.getComentario(),
         new ResponseEntrevista(entrevista.getId(), entrevista.getFecha(), entrevista.getAsistida(),
-            entrevista.getBooking().getId()));
+            entrevista.getBooking().getId(), responseAspirante, responseMentor));
   }
 }

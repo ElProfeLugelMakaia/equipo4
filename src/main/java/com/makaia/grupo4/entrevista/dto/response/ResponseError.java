@@ -11,6 +11,11 @@ public class ResponseError {
         this.code = code;
     }
 
+    public ResponseError(String message) {
+        this.message = message;
+        this.code = 400;
+    }
+
     public String getMessage() {
         return this.message;
     }

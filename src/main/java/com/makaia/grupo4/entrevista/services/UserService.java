@@ -1,7 +1,5 @@
 package com.makaia.grupo4.entrevista.services;
 
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,34 +29,6 @@ public class UserService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
-
-    // public ResponseEntity<Object> signUp(Map<String, Object> userData) {
-    // log.info("Registro interno de un usuario {}", userData);
-    // Map<String, Object> resp = new HashMap<>();
-    // if (validateSignUpMap(userData)) {
-
-    // Usuario usuario =
-    // repositorioUsuario.findByEmail(userData.get("correo").toString()).orElse(null);
-    // if (usuario == null) {
-    // Usuario n = new Usuario();
-    // n.setNombre(userData.get("nombre").toString());
-    // n.setApellido(userData.get("apellido").toString());
-    // n.setNombreUsuario(userData.get("nombreUsuario").toString());
-    // n.setCorreo(userData.get("correo").toString());
-    // n.setContrasena(passwordEncoder.encode(userData.get("contrasena").toString()));
-    // repositorioUsuario.save(n);
-    // return new ResponseEntity<>(usuario, HttpStatus.CREATED);
-    // } else {
-
-    // resp.put("error", "Usuario ya existente");
-    // return new ResponseEntity<>(resp, HttpStatus.BAD_REQUEST);
-    // }
-
-    // } else {
-    // resp.put("error", "Campos invalidos");
-    // return new ResponseEntity<>(resp, HttpStatus.BAD_REQUEST);
-    // }
-    // }
 
     public ResponseEntity<ResponseLogin> login(LoginDTO userData) {
 

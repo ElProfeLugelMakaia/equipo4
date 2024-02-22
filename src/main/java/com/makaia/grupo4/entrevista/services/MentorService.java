@@ -4,7 +4,6 @@ import com.makaia.grupo4.entrevista.dto.request.CreateMentor;
 import com.makaia.grupo4.entrevista.dto.response.ResponseMentor;
 import com.makaia.grupo4.entrevista.exceptions.EntrevistaApiException;
 import com.makaia.grupo4.entrevista.models.Mentor;
-import com.makaia.grupo4.entrevista.repositories.AgendaRepository;
 import com.makaia.grupo4.entrevista.repositories.MentorRespository;
 
 import lombok.extern.slf4j.Slf4j;
@@ -28,9 +27,6 @@ public class MentorService {
 
   @Autowired
   AgendaService agendaService;
-
-  @Autowired
-  private PasswordEncoder passwordEncoder;
 
   public ResponseEntity<ResponseMentor> createMentor(
       CreateMentor mentorDTO) {

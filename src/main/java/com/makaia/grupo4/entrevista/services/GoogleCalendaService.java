@@ -1,0 +1,143 @@
+
+package com.makaia.grupo4.entrevista.services;
+
+import com.google.api.client.auth.oauth2.Credential;
+import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
+import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
+import com.google.api.client.json.JsonFactory;
+import com.google.api.client.json.gson.GsonFactory;
+import com.google.api.services.calendar.Calendar;
+import com.google.api.services.calendar.CalendarScopes;
+import com.google.api.services.calendar.model.ConferenceData;
+import com.google.api.services.calendar.model.ConferenceSolutionKey;
+import com.google.api.services.calendar.model.CreateConferenceRequest;
+import com.google.api.services.calendar.model.Event;
+import com.google.api.services.calendar.model.EventAttendee;
+import com.google.api.services.calendar.model.EventDateTime;
+import com.google.api.services.calendar.model.EventReminder;
+import com.makaia.grupo4.entrevista.dto.request.CreateMeeting;
+
+import io.jsonwebtoken.lang.Arrays;
+
+// import com.google.apps.meet.v2.;
+// import com.google.api.services.meet.v2.model.ConferenceProperties;
+// import com.google.api.services.meet.v2.model.ConferenceSolution;
+// import com.google.api.services.meet.v2.model.ConferenceSolutionKey;
+// import com.google.api.services.meet.v2.model.ConferenceSolutionTypeEnum;
+// import com.google.api.services.meet.v2.model.CreateConferenceRequest;
+// import com.google.api.services.meet.v2.model.Date;
+// import com.google.api.services.meet.v2.model.DateTime;
+// import com.google.api.services.meet.v2.model.EventConferenceData;
+
+import lombok.extern.slf4j.Slf4j;
+
+import java.io.IOException;
+import java.security.GeneralSecurityException;
+
+import java.time.Instant;
+import java.time.ZoneOffset;
+
+import java.util.Collections;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+import java.util.List;
+
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.stereotype.Service;
+
+@Service
+@Slf4j
+public class GoogleCalendaService {
+
+        private static final Resource CREDENTIALS_FILE = new ClassPathResource("client_secret.json");
+        private static final String APPLICATION_NAME = "Entrevista Makaia";
+        private static final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
+        private static final String CALENDAR_ID = "manuelfer1996@gmail.com";
+
+        public String generateMeetLink(CreateMeeting dto) throws IOException, GeneralSecurityException {
+                // try {
+                // Crea una instancia del servicio de calendario de Google
+                log.info("Create Meeting: {}", dto);
+                log.info("Credencial {}", CREDENTIALS_FILE);
+                Calendar service = createCalendarService();
+
+                // Crea un evento para la reunión
+                Event event = new Event()
+                                .setSummary(dto.getSummary())
+                                .setDescription(dto.getDescription());
+
+                // Define la fecha y hora del evento
+                Instant startTime = dto.getStartDate().toInstant(ZoneOffset.UTC);
+                EventDateTime start = new EventDateTime()
+                                .setDateTime(new com.google.api.client.util.DateTime(
+                                                startTime.toEpochMilli()))
+                                .setTimeZone("America/Bogota");
+                event = event.setStart(start);
+
+                EventDateTime end = new EventDateTime()
+                                .setDateTime(new com.google.api.client.util.DateTime(
+                                                startTime.toEpochMilli() + 3600000))
+                                .setTimeZone("America/Bogota");
+                event = event.setEnd(end);
+
+                // List<EventAttendee> attendees = StreamSupport
+                // .stream(dto.getParticipants().spliterator(), false)
+                // .map(this::generateAttendee)
+                // .collect(Collectors.toList());
+
+                // event.setAttendees(attendees);
+
+                // EventReminder[] reminderOverrides = new EventReminder[] {
+                // new EventReminder().setMethod("email").setMinutes(24 * 60),
+                // new EventReminder().setMethod("popup").setMinutes(10),
+                // };
+                // Event.Reminders reminders = new Event.Reminders()
+                // .setUseDefault(false)
+                // .setOverrides(Arrays.asList(reminderOverrides));
+
+                // event.setReminders(reminders);
+
+                ConferenceSolutionKey conferenceSKey = new ConferenceSolutionKey();
+                conferenceSKey.setType("hangoutsMeet"); // Non-G suite user
+                CreateConferenceRequest createConferenceReq = new CreateConferenceRequest();
+                createConferenceReq.setRequestId("3whatisup3"); // ID generated by you
+                createConferenceReq.setConferenceSolutionKey(conferenceSKey);
+                ConferenceData conferenceData = new ConferenceData();
+                conferenceData.setCreateRequest(createConferenceReq);
+                event.setConferenceData(conferenceData);
+
+                // Inserta el evento en el calendario
+                Event createdEvent = service.events().insert(CALENDAR_ID, event).setConferenceDataVersion(0).execute();
+
+                // Obtiene el enlace de la reunión
+                String meetLink = createdEvent.getHangoutLink();
+
+                // Devuelve el enlace como respuesta
+                return meetLink;
+                // } catch (IOException | GeneralSecurityException e) {
+                // e.printStackTrace();
+                // return "Error al generar el enlace de la reunión";
+                // }
+        }
+
+        private Calendar createCalendarService() throws IOException, GeneralSecurityException {
+                return new Calendar.Builder(
+                                GoogleNetHttpTransport.newTrustedTransport(),
+                                JSON_FACTORY,
+                                authorize())
+                                .setApplicationName(APPLICATION_NAME)
+                                .build();
+        }
+
+        private Credential authorize() throws IOException {
+
+                return GoogleCredential.fromStream(CREDENTIALS_FILE.getInputStream())
+                                .createScoped(Collections.singleton(CalendarScopes.CALENDAR));
+        }
+
+        EventAttendee generateAttendee(String email) {
+                return new EventAttendee().setEmail(email);
+        }
+
+}

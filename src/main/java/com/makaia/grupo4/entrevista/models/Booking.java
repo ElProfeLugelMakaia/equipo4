@@ -10,7 +10,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -22,7 +22,13 @@ public class Booking {
     private Long id;
 
     @Column
-    private Date fecha;
+    private LocalDateTime fecha;
+
+    @Column
+    private Boolean active = true;
+
+    @Column(nullable = false)
+    private String code;
 
     @ManyToOne
     @JoinColumn(nullable = false)
@@ -38,10 +44,22 @@ public class Booking {
     public Booking() {
     }
 
-    public Booking(Date fecha, Mentor mentor, Aspirante aspirante) {
+    public Booking(LocalDateTime fecha, Mentor mentor, String code, Aspirante aspirante) {
         this.fecha = fecha;
         this.mentor = mentor;
+        this.code = code;
         this.aspirante = aspirante;
+    }
+
+    public Booking(Long id, LocalDateTime fecha, Boolean active, String code, Mentor mentor, Aspirante aspirante,
+            Entrevista entrevista) {
+        this.id = id;
+        this.fecha = fecha;
+        this.active = active;
+        this.code = code;
+        this.mentor = mentor;
+        this.aspirante = aspirante;
+        this.entrevista = entrevista;
     }
 
     public Long getId() {
@@ -52,12 +70,32 @@ public class Booking {
         this.id = id;
     }
 
-    public Date getFecha() {
+    public LocalDateTime getFecha() {
         return this.fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(LocalDateTime fecha) {
         this.fecha = fecha;
+    }
+
+    public Boolean isActive() {
+        return this.active;
+    }
+
+    public Boolean getActive() {
+        return this.active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public String getCode() {
+        return this.code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public Mentor getMentor() {
@@ -89,8 +127,18 @@ public class Booking {
         return this;
     }
 
-    public Booking fecha(Date fecha) {
+    public Booking fecha(LocalDateTime fecha) {
         setFecha(fecha);
+        return this;
+    }
+
+    public Booking active(Boolean active) {
+        setActive(active);
+        return this;
+    }
+
+    public Booking code(String code) {
+        setCode(code);
         return this;
     }
 
@@ -118,13 +166,14 @@ public class Booking {
         }
         Booking booking = (Booking) o;
         return Objects.equals(id, booking.id) && Objects.equals(fecha, booking.fecha)
+                && Objects.equals(active, booking.active) && Objects.equals(code, booking.code)
                 && Objects.equals(mentor, booking.mentor) && Objects.equals(aspirante, booking.aspirante)
                 && Objects.equals(entrevista, booking.entrevista);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, fecha, mentor, aspirante, entrevista);
+        return Objects.hash(id, fecha, active, code, mentor, aspirante, entrevista);
     }
 
     @Override
@@ -132,6 +181,8 @@ public class Booking {
         return "{" +
                 " id='" + getId() + "'" +
                 ", fecha='" + getFecha() + "'" +
+                ", active='" + isActive() + "'" +
+                ", code='" + getCode() + "'" +
                 ", mentor='" + getMentor() + "'" +
                 ", aspirante='" + getAspirante() + "'" +
                 ", entrevista='" + getEntrevista() + "'" +

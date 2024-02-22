@@ -1,11 +1,13 @@
 package com.makaia.grupo4.entrevista.dto.request;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.makaia.grupo4.entrevista.enums.ESTADO;
 import com.makaia.grupo4.entrevista.enums.GENERO;
 import com.makaia.grupo4.entrevista.enums.NivelEducativo;
 import com.makaia.grupo4.entrevista.enums.TIPO;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class CreateAspirante {
@@ -22,7 +24,8 @@ public class CreateAspirante {
 
   private String direccion;
 
-  private Date fechaNacimiento;
+  @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+  private LocalDateTime fechaNacimiento;
 
   private GENERO genero;
 
@@ -42,7 +45,8 @@ public class CreateAspirante {
   }
 
   public CreateAspirante(String nombres, String correo, String telefono, String departamento, String ciudad,
-      String direccion, Date fechaNacimiento, GENERO genero, String nacionalidad, Byte estrato, String tipoPoblacion,
+      String direccion, LocalDateTime fechaNacimiento, GENERO genero, String nacionalidad, Byte estrato,
+      String tipoPoblacion,
       NivelEducativo nivelEducativo, TIPO tipo, ESTADO estado) {
     this.nombres = nombres;
     this.correo = correo;
@@ -108,11 +112,11 @@ public class CreateAspirante {
     this.direccion = direccion;
   }
 
-  public Date getFechaNacimiento() {
+  public LocalDateTime getFechaNacimiento() {
     return this.fechaNacimiento;
   }
 
-  public void setFechaNacimiento(Date fechaNacimiento) {
+  public void setFechaNacimiento(LocalDateTime fechaNacimiento) {
     this.fechaNacimiento = fechaNacimiento;
   }
 
@@ -202,7 +206,7 @@ public class CreateAspirante {
     return this;
   }
 
-  public CreateAspirante fechaNacimiento(Date fechaNacimiento) {
+  public CreateAspirante fechaNacimiento(LocalDateTime fechaNacimiento) {
     setFechaNacimiento(fechaNacimiento);
     return this;
   }

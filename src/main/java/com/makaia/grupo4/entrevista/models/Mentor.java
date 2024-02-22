@@ -5,11 +5,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 import com.makaia.grupo4.entrevista.enums.GENERO;
 import com.makaia.grupo4.entrevista.enums.NivelEducativo;
-import java.util.Objects;
 
 @Entity
 @Table(name = "mentor")
@@ -37,7 +37,7 @@ public class Mentor extends Persona {
             String departamento,
             String ciudad,
             String direccion,
-            Date fechaNacimiento,
+            LocalDateTime fechaNacimiento,
             GENERO genero,
             String nacionalidad,
             Byte estrato,
@@ -123,14 +123,14 @@ public class Mentor extends Persona {
         return Objects.hash(estado, password, bookings, agenda);
     }
 
-    @Override
-    public String toString() {
-        return "{" +
-                " estado='" + isEstado() + "'" +
-                ", password='" + getPassword() + "'" +
-                ", bookings='" + getBookings() + "'" +
-                ", agenda='" + getAgenda() + "'" +
-                "}";
-    }
+    // @Override
+    // public String toString() {
+    // return "{" +
+    // " estado='" + isEstado() + "'" +
+    // ", password='" + getPassword() + "'" +
+    // ", bookings='" + getBookings() + "'" +
+    // ", agenda='" + getAgenda() + "'" +
+    // "}";
+    // }
 
 }

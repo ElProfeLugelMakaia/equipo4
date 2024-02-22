@@ -14,6 +14,9 @@ public interface BookingRepository extends JpaRepository<Booking, Long> {
     @Query
     public List<Booking> findByMentor(Mentor mentor);
 
+    @Query("SELECT b FROM Booking b WHERE b.active = true and b.mentor= :mentor")
+    public List<Booking> findByMentorActive(Mentor mentor);
+
     @Query
     public Booking findByAspirante(Aspirante mentor);
 }

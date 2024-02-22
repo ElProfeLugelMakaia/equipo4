@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import com.makaia.grupo4.entrevista.dto.request.CreateAgenda;
 import com.makaia.grupo4.entrevista.dto.response.ResponseAgenda;
+import com.makaia.grupo4.entrevista.dto.response.ResponseDelete;
 import com.makaia.grupo4.entrevista.exceptions.EntrevistaApiException;
 import com.makaia.grupo4.entrevista.models.Agenda;
 import com.makaia.grupo4.entrevista.models.Mentor;
@@ -140,6 +141,31 @@ public class AgendaService {
         return ResponseEntity.ok(convertAgendaToDTO(aspirante.get()));
     }
 
+    public ResponseEntity<ResponseAgenda> updateAgenda(CreateAgenda dto) {
+        Optional<Agenda> optional = repository.findById(dto.getId());
+        if (!optional.isPresent()) {
+            throw new EntrevistaApiException(HttpStatus.NOT_FOUND, "No existe la agenda");
+        }
+        Agenda agenda = optional.get();
+        agenda.setFecha(dto.getFecha());
+        agenda.setEstado(dto.getEstado());
+
+        repository.save(agenda);
+
+        return ResponseEntity.ok(convertAgendaToDTO(agenda));
+    }
+
+    public ResponseEntity<ResponseDelete> deleteAgenda(Long id) {
+        Optional<Agenda> optional = repository.findById(id);
+        if (!optional.isPresent()) {
+            throw new EntrevistaApiException(HttpStatus.NOT_FOUND, "No existe la agenda");
+        }
+
+        repository.delete(optional.get());
+
+        return ResponseEntity.ok(new ResponseDelete().message("Agenda deleted").id(id));
+    }
+
     private ResponseAgenda convertAgendaToDTO(Agenda aspirante) {
         return new ResponseAgenda(
                 aspirante.getId(),
@@ -149,21 +175,21 @@ public class AgendaService {
     }
 
     private List<Agenda> createDefaultAgenda(Mentor mentor) {
-        List<Date> fechasFebreroAgosto = StreamSupport
+        List<LocalDateTime> fechasFebreroAgosto = StreamSupport
                 .stream(GenerateDates.obtenerFechasFebreroAgosto(LocalDate.now().getYear()).spliterator(), false)
                 .map(this::convertirADate)
                 .collect(Collectors.toList());
         List<Agenda> newAgendas = new ArrayList<>();
 
-        for (Date date : fechasFebreroAgosto) {
+        for (LocalDateTime date : fechasFebreroAgosto) {
             newAgendas.add(new Agenda(date, true, mentor));
         }
 
         return newAgendas;
     }
 
-    private Date convertirADate(LocalDateTime localDate) {
+    private LocalDateTime convertirADate(LocalDateTime localDate) {
         Instant instant = localDate.atZone(ZoneId.systemDefault()).toInstant();
-        return Date.from(instant);
+        return LocalDateTime.from(instant);
     }
 }

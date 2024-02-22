@@ -34,6 +34,12 @@ public class BookingController {
     return service.getBookingMentorId(mentorId);
   }
 
+  @GetMapping(path = "/mentor/{mentorId}/active")
+  public ResponseEntity<List<ResponseBooking>> getBookingMentorActive(
+      @PathVariable Long mentorId) {
+    return service.getBookingMentorId(mentorId);
+  }
+
   @GetMapping(path = "/aspirante/{aspiranteId}")
   public ResponseEntity<ResponseBooking> getEntrevistaAspirante(
       @PathVariable Long aspiranteId) {

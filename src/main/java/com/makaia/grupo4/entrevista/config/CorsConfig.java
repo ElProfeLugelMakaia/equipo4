@@ -1,17 +1,10 @@
 package com.makaia.grupo4.entrevista.config;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 
 @Configuration
@@ -23,7 +16,7 @@ public class CorsConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         log.info(("INgresando a los COSR"));
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:5173")
+                .allowedOrigins("http://localhost:5173", "https://entrevista-makaia-app.onrender.com")
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
                 .allowedHeaders("*") // Permitir cualquier encabezado
                 .exposedHeaders("Access-Control-Allow-Origin") // Exponer el encabezado CORS

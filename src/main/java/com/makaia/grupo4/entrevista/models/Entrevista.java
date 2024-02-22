@@ -1,8 +1,10 @@
 package com.makaia.grupo4.entrevista.models;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -20,14 +22,17 @@ public class Entrevista {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private Date fecha;
+    private LocalDateTime fecha;
 
     private boolean asistida;
+
+    @Column
+    private String meetLink;
 
     @OneToOne(optional = false)
     private Booking booking;
 
-    @OneToOne(optional = false)
+    @OneToOne(optional = true)
     private Formulario formulario;
 
     @OneToMany
@@ -36,11 +41,22 @@ public class Entrevista {
     public Entrevista() {
     }
 
-    public Entrevista(Date fecha, boolean asistida, Booking booking, Formulario formulario) {
+    public Entrevista(LocalDateTime fecha, boolean asistida, String meetLink, Booking booking) {
         this.fecha = fecha;
         this.asistida = asistida;
+        this.meetLink = meetLink;
+        this.booking = booking;
+    }
+
+    public Entrevista(long id, LocalDateTime fecha, boolean asistida, String meetLink, Booking booking,
+            Formulario formulario, List<Comentario> comentarios) {
+        this.id = id;
+        this.fecha = fecha;
+        this.asistida = asistida;
+        this.meetLink = meetLink;
         this.booking = booking;
         this.formulario = formulario;
+        this.comentarios = comentarios;
     }
 
     public long getId() {
@@ -51,11 +67,11 @@ public class Entrevista {
         this.id = id;
     }
 
-    public Date getFecha() {
+    public LocalDateTime getFecha() {
         return this.fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(LocalDateTime fecha) {
         this.fecha = fecha;
     }
 
@@ -69,6 +85,14 @@ public class Entrevista {
 
     public void setAsistida(boolean asistida) {
         this.asistida = asistida;
+    }
+
+    public String getMeetLink() {
+        return this.meetLink;
+    }
+
+    public void setMeetLink(String meetLink) {
+        this.meetLink = meetLink;
     }
 
     public Booking getBooking() {
@@ -87,18 +111,31 @@ public class Entrevista {
         this.formulario = formulario;
     }
 
+    public List<Comentario> getComentarios() {
+        return this.comentarios;
+    }
+
+    public void setComentarios(List<Comentario> comentarios) {
+        this.comentarios = comentarios;
+    }
+
     public Entrevista id(long id) {
         setId(id);
         return this;
     }
 
-    public Entrevista fecha(Date fecha) {
+    public Entrevista fecha(LocalDateTime fecha) {
         setFecha(fecha);
         return this;
     }
 
     public Entrevista asistida(boolean asistida) {
         setAsistida(asistida);
+        return this;
+    }
+
+    public Entrevista meetLink(String meetLink) {
+        setMeetLink(meetLink);
         return this;
     }
 
@@ -112,6 +149,11 @@ public class Entrevista {
         return this;
     }
 
+    public Entrevista comentarios(List<Comentario> comentarios) {
+        setComentarios(comentarios);
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -121,12 +163,14 @@ public class Entrevista {
         }
         Entrevista entrevista = (Entrevista) o;
         return id == entrevista.id && Objects.equals(fecha, entrevista.fecha) && asistida == entrevista.asistida
-                && Objects.equals(booking, entrevista.booking) && Objects.equals(formulario, entrevista.formulario);
+                && Objects.equals(meetLink, entrevista.meetLink) && Objects.equals(booking, entrevista.booking)
+                && Objects.equals(formulario, entrevista.formulario)
+                && Objects.equals(comentarios, entrevista.comentarios);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, fecha, asistida, booking, formulario);
+        return Objects.hash(id, fecha, asistida, meetLink, booking, formulario, comentarios);
     }
 
     @Override
@@ -135,8 +179,10 @@ public class Entrevista {
                 " id='" + getId() + "'" +
                 ", fecha='" + getFecha() + "'" +
                 ", asistida='" + isAsistida() + "'" +
+                ", meetLink='" + getMeetLink() + "'" +
                 ", booking='" + getBooking() + "'" +
                 ", formulario='" + getFormulario() + "'" +
+                ", comentarios='" + getComentarios() + "'" +
                 "}";
     }
 

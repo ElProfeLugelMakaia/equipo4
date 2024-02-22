@@ -10,6 +10,8 @@ public class ResponseAspirante {
 
     private String correo;
 
+    private String nombres;
+
     private TIPO tipo;
 
     private ESTADO estado;
@@ -17,13 +19,10 @@ public class ResponseAspirante {
     public ResponseAspirante() {
     }
 
-    public ResponseAspirante(
-            Long id,
-            String correo,
-            TIPO tipo,
-            ESTADO estado) {
+    public ResponseAspirante(Long id, String correo, String nombres, TIPO tipo, ESTADO estado) {
         this.id = id;
         this.correo = correo;
+        this.nombres = nombres;
         this.tipo = tipo;
         this.estado = estado;
     }
@@ -42,6 +41,14 @@ public class ResponseAspirante {
 
     public void setCorreo(String correo) {
         this.correo = correo;
+    }
+
+    public String getNombres() {
+        return this.nombres;
+    }
+
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
     }
 
     public TIPO getTipo() {
@@ -70,6 +77,11 @@ public class ResponseAspirante {
         return this;
     }
 
+    public ResponseAspirante nombres(String nombres) {
+        setNombres(nombres);
+        return this;
+    }
+
     public ResponseAspirante tipo(TIPO tipo) {
         setTipo(tipo);
         return this;
@@ -89,12 +101,13 @@ public class ResponseAspirante {
         }
         ResponseAspirante responseAspirante = (ResponseAspirante) o;
         return Objects.equals(id, responseAspirante.id) && Objects.equals(correo, responseAspirante.correo)
-                && Objects.equals(tipo, responseAspirante.tipo) && Objects.equals(estado, responseAspirante.estado);
+                && Objects.equals(nombres, responseAspirante.nombres) && Objects.equals(tipo, responseAspirante.tipo)
+                && Objects.equals(estado, responseAspirante.estado);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, correo, tipo, estado);
+        return Objects.hash(id, correo, nombres, tipo, estado);
     }
 
     @Override
@@ -102,6 +115,7 @@ public class ResponseAspirante {
         return "{" +
                 " id='" + getId() + "'" +
                 ", correo='" + getCorreo() + "'" +
+                ", nombres='" + getNombres() + "'" +
                 ", tipo='" + getTipo() + "'" +
                 ", estado='" + getEstado() + "'" +
                 "}";

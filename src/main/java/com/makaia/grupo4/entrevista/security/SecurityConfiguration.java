@@ -10,6 +10,9 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import com.makaia.grupo4.entrevista.security.jwt.JwtFilter;
 
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -17,41 +20,51 @@ import jakarta.servlet.http.HttpServletResponse;
 @Configuration
 public class SecurityConfiguration {
 
-    @Autowired
-    AuthDetailsService authDetailsService;
+        @Autowired
+        private JwtFilter jwtTokenFilter;
 
-    @Bean
-    PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(8);
-    }
+        @Autowired
+        AuthDetailsService authDetailsService;
 
-    @Bean
-    SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity = httpSecurity
-                .csrf(AbstractHttpConfigurer::disable).cors(AbstractHttpConfigurer::disable);
+        @Bean
+        PasswordEncoder passwordEncoder() {
+                return new BCryptPasswordEncoder(8);
+        }
 
-        httpSecurity = httpSecurity
-                .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+        @Bean
+        SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
+                httpSecurity = httpSecurity
+                                .csrf(AbstractHttpConfigurer::disable);
 
-        // Set unauthorized requests exception handler
-        httpSecurity = httpSecurity
-                .exceptionHandling(handling -> handling
-                        .authenticationEntryPoint(
-                                (request, response, ex) -> {
-                                    response.sendError(
-                                            HttpServletResponse.SC_UNAUTHORIZED,
-                                            ex.getMessage());
-                                }));
+                httpSecurity = httpSecurity
+                                .sessionManagement(management -> management
+                                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
-        httpSecurity = httpSecurity
-                .authorizeHttpRequests((authorize) -> {
-                    authorize
-                            .requestMatchers("/public/**", "api/v1/users/login", "api/v1/users/forgotPassword",
-                                    "api/v1/users/signup")
-                            .permitAll()
-                            .anyRequest().authenticated();
-                });
+                // // Set unauthorized requests exception handler
+                // httpSecurity = httpSecurity
+                // .exceptionHandling(handling -> handling
+                // .authenticationEntryPoint(
+                // (request, response, ex) -> {
+                // response.sendError(
+                // HttpServletResponse.SC_UNAUTHORIZED,
+                // ex.getMessage());
+                // }));
 
-        return httpSecurity.build();
-    }
+                httpSecurity = httpSecurity
+                                .authorizeHttpRequests((authorize) -> {
+                                        authorize
+                                                        .requestMatchers("/public/**", "api/v1/users/login",
+                                                                        "api/v1/users/forgotPassword",
+                                                                        "api/v1/users/signup")
+                                                        .permitAll()
+                                                        .anyRequest().authenticated();
+                                });
+
+                // Add JWT token filter
+                httpSecurity.addFilterBefore(
+                                jwtTokenFilter,
+                                UsernamePasswordAuthenticationFilter.class);
+
+                return httpSecurity.build();
+        }
 }

@@ -1,11 +1,16 @@
 package com.makaia.grupo4.entrevista.dto.request;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class CreateAgenda {
 
-  private Date fecha;
+  private Long id;
+
+  @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+  private LocalDateTime fecha;
 
   private boolean estado;
 
@@ -14,17 +19,32 @@ public class CreateAgenda {
   public CreateAgenda() {
   }
 
-  public CreateAgenda(Date fecha, boolean estado, Long mentora_id) {
+  public CreateAgenda(LocalDateTime fecha, boolean estado, Long mentora_id) {
     this.fecha = fecha;
     this.estado = estado;
     this.mentora_id = mentora_id;
   }
 
-  public Date getFecha() {
+  public CreateAgenda(Long id, LocalDateTime fecha, boolean estado, Long mentora_id) {
+    this.id = id;
+    this.fecha = fecha;
+    this.estado = estado;
+    this.mentora_id = mentora_id;
+  }
+
+  public Long getId() {
+    return this.id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public LocalDateTime getFecha() {
     return this.fecha;
   }
 
-  public void setFecha(Date fecha) {
+  public void setFecha(LocalDateTime fecha) {
     this.fecha = fecha;
   }
 
@@ -48,7 +68,12 @@ public class CreateAgenda {
     this.mentora_id = mentora_id;
   }
 
-  public CreateAgenda fecha(Date fecha) {
+  public CreateAgenda id(Long id) {
+    setId(id);
+    return this;
+  }
+
+  public CreateAgenda fecha(LocalDateTime fecha) {
     setFecha(fecha);
     return this;
   }
@@ -71,13 +96,13 @@ public class CreateAgenda {
       return false;
     }
     CreateAgenda createAgenda = (CreateAgenda) o;
-    return Objects.equals(fecha, createAgenda.fecha) && estado == createAgenda.estado
-        && Objects.equals(mentora_id, createAgenda.mentora_id);
+    return Objects.equals(id, createAgenda.id) && Objects.equals(fecha, createAgenda.fecha)
+        && estado == createAgenda.estado && Objects.equals(mentora_id, createAgenda.mentora_id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fecha, estado, mentora_id);
+    return Objects.hash(id, fecha, estado, mentora_id);
   }
 
   @Override

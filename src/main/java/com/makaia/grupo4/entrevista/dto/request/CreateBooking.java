@@ -1,12 +1,16 @@
 package com.makaia.grupo4.entrevista.dto.request;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class CreateBooking {
 
-    private Date fecha;
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    private LocalDateTime fecha;
 
     private Long mentor_id;
 
@@ -15,17 +19,17 @@ public class CreateBooking {
     public CreateBooking() {
     }
 
-    public CreateBooking(Date fecha, Long mentor_id, Long aspirante_id) {
+    public CreateBooking(LocalDateTime fecha, Long mentor_id, Long aspirante_id) {
         this.fecha = fecha;
         this.mentor_id = mentor_id;
         this.aspirante_id = aspirante_id;
     }
 
-    public Date getFecha() {
+    public LocalDateTime getFecha() {
         return this.fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(LocalDateTime fecha) {
         this.fecha = fecha;
     }
 
@@ -45,7 +49,7 @@ public class CreateBooking {
         this.aspirante_id = aspirante_id;
     }
 
-    public CreateBooking fecha(Date fecha) {
+    public CreateBooking fecha(LocalDateTime fecha) {
         setFecha(fecha);
         return this;
     }

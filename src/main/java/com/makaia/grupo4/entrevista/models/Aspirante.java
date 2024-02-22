@@ -13,6 +13,7 @@ import com.makaia.grupo4.entrevista.enums.GENERO;
 import com.makaia.grupo4.entrevista.enums.NivelEducativo;
 import com.makaia.grupo4.entrevista.enums.TIPO;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -41,7 +42,7 @@ public class Aspirante extends Persona {
             String departamento,
             String ciudad,
             String direccion,
-            Date fechaNacimiento,
+            LocalDateTime fechaNacimiento,
             GENERO genero,
             String nacionalidad,
             Byte estrato,

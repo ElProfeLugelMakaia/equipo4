@@ -8,7 +8,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -19,7 +19,7 @@ public class Comentario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Date fecha;
+    private LocalDateTime fecha;
 
     private String texto;
 
@@ -30,7 +30,14 @@ public class Comentario {
     public Comentario() {
     }
 
-    public Comentario(Date fecha, String texto, Entrevista entrevista) {
+    public Comentario(LocalDateTime fecha, String texto, Entrevista entrevista) {
+        this.fecha = fecha;
+        this.texto = texto;
+        this.entrevista = entrevista;
+    }
+
+    public Comentario(Long id, LocalDateTime fecha, String texto, Entrevista entrevista) {
+        this.id = id;
         this.fecha = fecha;
         this.texto = texto;
         this.entrevista = entrevista;
@@ -44,11 +51,11 @@ public class Comentario {
         this.id = id;
     }
 
-    public Date getFecha() {
+    public LocalDateTime getFecha() {
         return this.fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(LocalDateTime fecha) {
         this.fecha = fecha;
     }
 
@@ -60,18 +67,31 @@ public class Comentario {
         this.texto = texto;
     }
 
+    public Entrevista getEntrevista() {
+        return this.entrevista;
+    }
+
+    public void setEntrevista(Entrevista entrevista) {
+        this.entrevista = entrevista;
+    }
+
     public Comentario id(Long id) {
         setId(id);
         return this;
     }
 
-    public Comentario fecha(Date fecha) {
+    public Comentario fecha(LocalDateTime fecha) {
         setFecha(fecha);
         return this;
     }
 
     public Comentario texto(String texto) {
         setTexto(texto);
+        return this;
+    }
+
+    public Comentario entrevista(Entrevista entrevista) {
+        setEntrevista(entrevista);
         return this;
     }
 
@@ -84,12 +104,12 @@ public class Comentario {
         }
         Comentario comentario = (Comentario) o;
         return Objects.equals(id, comentario.id) && Objects.equals(fecha, comentario.fecha)
-                && Objects.equals(texto, comentario.texto);
+                && Objects.equals(texto, comentario.texto) && Objects.equals(entrevista, comentario.entrevista);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, fecha, texto);
+        return Objects.hash(id, fecha, texto, entrevista);
     }
 
     @Override
@@ -98,6 +118,7 @@ public class Comentario {
                 " id='" + getId() + "'" +
                 ", fecha='" + getFecha() + "'" +
                 ", texto='" + getTexto() + "'" +
+                ", entrevista='" + getEntrevista() + "'" +
                 "}";
     }
 

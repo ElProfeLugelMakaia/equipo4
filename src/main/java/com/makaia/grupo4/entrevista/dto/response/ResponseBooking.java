@@ -1,13 +1,19 @@
 package com.makaia.grupo4.entrevista.dto.response;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 
 public class ResponseBooking {
 
     private Long id;
 
-    private Date fecha;
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    private LocalDateTime fecha;
 
     private ResponseMentor mentor;
 
@@ -16,7 +22,7 @@ public class ResponseBooking {
     public ResponseBooking() {
     }
 
-    public ResponseBooking(Long id, Date fecha, ResponseMentor mentor, ResponseAspirante aspirante) {
+    public ResponseBooking(Long id, LocalDateTime fecha, ResponseMentor mentor, ResponseAspirante aspirante) {
         this.id = id;
         this.fecha = fecha;
         this.mentor = mentor;
@@ -31,11 +37,11 @@ public class ResponseBooking {
         this.id = id;
     }
 
-    public Date getFecha() {
+    public LocalDateTime getFecha() {
         return this.fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(LocalDateTime fecha) {
         this.fecha = fecha;
     }
 
@@ -60,7 +66,7 @@ public class ResponseBooking {
         return this;
     }
 
-    public ResponseBooking fecha(Date fecha) {
+    public ResponseBooking fecha(LocalDateTime fecha) {
         setFecha(fecha);
         return this;
     }

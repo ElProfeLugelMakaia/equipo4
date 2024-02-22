@@ -11,6 +11,7 @@ import com.makaia.grupo4.entrevista.models.Mentor;
 import com.makaia.grupo4.entrevista.repositories.AspiranteRepository;
 import com.makaia.grupo4.entrevista.repositories.BookingRepository;
 import com.makaia.grupo4.entrevista.repositories.MentorRespository;
+import com.makaia.grupo4.entrevista.utils.Utils;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -35,6 +36,9 @@ public class BookingService {
   @Autowired
   AspiranteRepository aspiranteRespository;
 
+  @Autowired
+  SendEmailService sendEmailService;
+
   public ResponseEntity<ResponseBooking> createBooking(
       CreateBooking dto) {
     log.info("DTO: {}", dto);
@@ -57,8 +61,12 @@ public class BookingService {
       throw new EntrevistaApiException(HttpStatus.BAD_REQUEST, "El booking con este aspirante ya existe");
     }
 
-    Booking newBooking = new Booking(dto.getFecha(), mentor.get(), aspirante.get());
+    Booking newBooking = new Booking(dto.getFecha(), mentor.get(), Utils.generateCodeAlphNumString(), aspirante.get());
     this.repository.save(newBooking);
+
+    // sendEmailService.sendEmail(booking.getAspirante().getCorreo(), "Un paso al
+    // ser el mejor programador ", "Tienes una entrevista agendada en el siguiente
+    // link : " + booking.ge);
 
     log.info("Booking created {}", newBooking);
 
@@ -103,7 +111,7 @@ public class BookingService {
     log.info("Inicia Servicio Entrevista/mentor id_mentor: {}", id);
     List<ResponseBooking> responseBooking = StreamSupport
         .stream(
-            this.repository.findByMentor(mentor.get()).spliterator(),
+            this.repository.findByMentorActive(mentor.get()).spliterator(),
             false)
         .map(this::convertBookingToDTO)
         .collect(Collectors.toList());
@@ -118,6 +126,7 @@ public class BookingService {
         booking.getId(),
         booking.getFecha(),
         new ResponseMentor(mentor.getId(), mentor.getCorreo(), mentor.getNombres(), mentor.getEstado()),
-        new ResponseAspirante(aspirante.getId(), aspirante.getCorreo(), aspirante.getTipo(), aspirante.getEstado()));
+        new ResponseAspirante(aspirante.getId(), aspirante.getCorreo(), aspirante.getNombres(), aspirante.getTipo(),
+            aspirante.getEstado()));
   }
 }
