@@ -14,12 +14,12 @@ public class CorsConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        log.info(("INgresando a los COSR"));
+        log.info(("Ingresando a los CORS"));
         registry.addMapping("/**")
                 .allowedOrigins("http://localhost:5173", "https://entrevista-makaia-app.onrender.com")
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
                 .allowedHeaders("*") // Permitir cualquier encabezado
-                .exposedHeaders("Access-Control-Allow-Origin") // Exponer el encabezado CORS
+                // .exposedHeaders("Access-Control-Allow-Origin") // Exponer el encabezado CORS
                 .allowCredentials(true);
     }
 
