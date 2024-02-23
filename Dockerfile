@@ -8,7 +8,9 @@ RUN set DB_USERNAME=avnadmin
 RUN set DB_PASSWORD=AVNS_U8zVffrHovaT6VOICki
 RUN mvn package -f pom.xml
 
+
 FROM eclipse-temurin:21-jdk-alpine
 VOLUME /tmp
 COPY --from=build /target/*.jar app.jar
 ENTRYPOINT ["java","-jar","app.jar"]
+EXPOSE 8080
