@@ -7,6 +7,8 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import lombok.extern.slf4j.Slf4j;
+
 // import org.springframework.context.annotation.Configuration;
 // import org.springframework.web.servlet.config.annotation.CorsRegistry;
 // import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -16,7 +18,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebMvc
-// @Slf4j
+@Slf4j
 public class CorsConfig {
 
     // @Override
@@ -36,12 +38,15 @@ public class CorsConfig {
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
+
             @Override
             public void addCorsMappings(CorsRegistry registry) {
+                log.info("Ingresando a los CORS, {}", registry);
                 registry.addMapping("/**")
                         .allowedMethods(CorsConfiguration.ALL)
                         .allowedHeaders(CorsConfiguration.ALL)
-                        .allowedOriginPatterns(CorsConfiguration.ALL);
+                        .allowedOriginPatterns(CorsConfiguration.ALL)
+                        .allowCredentials(true);
 
             }
         };
