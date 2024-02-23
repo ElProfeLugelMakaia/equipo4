@@ -11,7 +11,7 @@
 FROM eclipse-temurin:21-jdk-alpine
 RUN mvn package -f pom.xml
 # VOLUME /tmp
-COPY --from=build /target/*.jar app.jar
+COPY target/*.jar app.jar
 # ENTRYPOINT ["mvn","spring-boot:run"]
 EXPOSE 8080 
 ENTRYPOINT ["java","-jar","/app.jar"]
