@@ -3,6 +3,7 @@ package com.makaia.grupo4.entrevista.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -54,12 +55,17 @@ public class SecurityConfiguration {
 
                 httpSecurity = httpSecurity
                                 .authorizeHttpRequests((authorize) -> {
+                                        authorize.requestMatchers(HttpMethod.OPTIONS, "/**")
+                                                .permitAll();
+
+
                                         authorize
-                                                        .requestMatchers("/public/**", "api/v1/users/login",
-                                                                        "api/v1/users/forgotPassword",
-                                                                        "api/v1/users/signup")
-                                                        .permitAll()
-                                                        .anyRequest().authenticated();
+
+                                                .requestMatchers("/public/**", "api/v1/users/login",
+                                                                "api/v1/users/forgotPassword",
+                                                                "api/v1/users/signup")
+                                                .permitAll()
+                                                .anyRequest().authenticated();
                                 });
 
                 // Add JWT token filter
