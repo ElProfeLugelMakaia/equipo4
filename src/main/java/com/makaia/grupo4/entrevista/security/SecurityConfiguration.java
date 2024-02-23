@@ -36,8 +36,7 @@ public class SecurityConfiguration {
 
         @Bean
         SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-                httpSecurity = httpSecurity
-                                .csrf(AbstractHttpConfigurer::disable);
+                httpSecurity = httpSecurity.cors(cors -> cors.disable()).csrf(csrf -> csrf.disable());
 
                 httpSecurity = httpSecurity
                                 .sessionManagement(management -> management
@@ -71,16 +70,17 @@ public class SecurityConfiguration {
                 return httpSecurity.build();
         }
 
-        // Used by Spring Security if CORS is enabled.
-        @Bean
-        CorsFilter corsFilter() {
-                UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-                CorsConfiguration config = new CorsConfiguration();
-                config.setAllowCredentials(true);
-                config.addAllowedOrigin("*");
-                config.addAllowedHeader("*");
-                config.addAllowedMethod("*");
-                source.registerCorsConfiguration("/**", config);
-                return new CorsFilter(source);
-        }
+        // // Used by Spring Security if CORS is enabled.
+        // @Bean
+        // CorsFilter corsFilter() {
+        // UrlBasedCorsConfigurationSource source = new
+        // UrlBasedCorsConfigurationSource();
+        // CorsConfiguration config = new CorsConfiguration();
+        // config.setAllowCredentials(true);
+        // config.addAllowedOrigin("*");
+        // config.addAllowedHeader("*");
+        // config.addAllowedMethod("*");
+        // source.registerCorsConfiguration("/**", config);
+        // return new CorsFilter(source);
+        // }
 }
