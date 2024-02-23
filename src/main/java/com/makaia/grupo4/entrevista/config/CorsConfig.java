@@ -43,7 +43,8 @@ public class CorsConfig {
             public void addCorsMappings(CorsRegistry registry) {
                 log.info("Ingresando a los CORS, {}", registry);
                 registry.addMapping("/**")
-                        .allowedOrigins(CorsConfiguration.ALL)
+                        .allowedOrigins("http://localhost:5173",
+                                "https://entrevista-makaia-app.onrender.com")
                         .allowedMethods(CorsConfiguration.ALL)
                         .allowedHeaders(CorsConfiguration.ALL)
                         .allowedOriginPatterns(CorsConfiguration.ALL)
