@@ -36,13 +36,15 @@ public class CorsConfig {
     // }
 
     @Bean
-    public WebMvcConfigurer corsConfigurer() {
+    WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
 
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 log.info("Ingresando a los CORS, {}", registry);
                 registry.addMapping("/**")
+                        .allowedOrigins("http://localhost:5173",
+                                "https://entrevista-makaia-app.onrender.com")
                         .allowedMethods(CorsConfiguration.ALL)
                         .allowedHeaders(CorsConfiguration.ALL)
                         .allowedOriginPatterns(CorsConfiguration.ALL)
